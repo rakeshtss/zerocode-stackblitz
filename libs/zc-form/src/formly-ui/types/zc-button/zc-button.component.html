@@ -1,0 +1,16 @@
+<div  [id]="'btn-'+field.key">
+  <button
+    [id]="field.key"
+    *ngIf="to.displayStyle && to.displayStyle == 'button'"
+    [type]="to.type || 'button'"
+    class="btn"
+    [ngClass]="to.cssClass"
+    (click)="onClick()"
+  >
+    <i *ngIf="to.icon" [ngClass]="to.icon"></i>
+    <span *ngIf="to.hideBtnText !== true"> {{ to.label }}</span>
+  </button>
+  <a *ngIf="to.displayStyle && to.displayStyle == 'link'" (click)="onClick()">
+    <span *ngIf="to.hideBtnText !== true"> {{ to.label }}</span>
+  </a>
+</div>

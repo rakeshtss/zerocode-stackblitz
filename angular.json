@@ -1,29 +1,34 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
+  "newProjectRoot": "",
   "projects": {
-    "demo": {
-      "root": "",
-      "sourceRoot": "src",
+    "zc": {
+      "root": "apps/zc/",
+      "sourceRoot": "apps/zc/src",
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
+      "prefix": "zc",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
+            "outputPath": "dist/apps/zc",
+            "index": "apps/zc/src/index.html",
+            "main": "apps/zc/src/main.ts",
+            "polyfills": "apps/zc/src/polyfills.ts",
+            "tsConfig": "apps/zc/tsconfig.app.json",
+            "assets": ["apps/zc/src/favicon.ico", "apps/zc/src/assets"],
             "styles": [
-              "src/styles.css"
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova-light/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "apps/zc/src/styles.scss"
             ],
             "scripts": []
           },
@@ -31,8 +36,474 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "apps/zc/src/environments/environment.ts",
+                  "with": "apps/zc/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "zc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "zc:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "zc:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/zc/src/test.ts",
+            "polyfills": "apps/zc/src/polyfills.ts",
+            "tsConfig": "apps/zc/tsconfig.spec.json",
+            "karmaConfig": "apps/zc/karma.conf.js",
+            "styles": ["apps/zc/src/styles.scss"],
+            "scripts": [],
+            "assets": ["apps/zc/src/favicon.ico", "apps/zc/src/assets"]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/zc/tsconfig.app.json",
+              "apps/zc/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "zc-e2e": {
+      "root": "apps/zc-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/zc-e2e/cypress.json",
+            "tsConfig": "apps/zc-e2e/tsconfig.e2e.json",
+            "devServerTarget": "zc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "zc:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/zc-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "zc-utilities": {
+      "root": "libs/zc-utilities",
+      "sourceRoot": "libs/zc-utilities/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-utilities/tsconfig.lib.json",
+            "project": "libs/zc-utilities/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-utilities/src/test.ts",
+            "tsConfig": "libs/zc-utilities/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-utilities/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-utilities/tsconfig.lib.json",
+              "libs/zc-utilities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-form": {
+      "root": "libs/zc-form",
+      "sourceRoot": "libs/zc-form/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-form/tsconfig.lib.json",
+            "project": "libs/zc-form/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-form/src/test.ts",
+            "tsConfig": "libs/zc-form/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-form/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-form/tsconfig.lib.json",
+              "libs/zc-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-data-list": {
+      "root": "libs/zc-data-list",
+      "sourceRoot": "libs/zc-data-list/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-data-list/tsconfig.lib.json",
+            "project": "libs/zc-data-list/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-data-list/src/test.ts",
+            "tsConfig": "libs/zc-data-list/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-data-list/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-data-list/tsconfig.lib.json",
+              "libs/zc-data-list/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-page-builder": {
+      "root": "libs/zc-page-builder",
+      "sourceRoot": "libs/zc-page-builder/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-page-builder/tsconfig.lib.json",
+            "project": "libs/zc-page-builder/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-page-builder/src/test.ts",
+            "tsConfig": "libs/zc-page-builder/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-page-builder/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-page-builder/tsconfig.lib.json",
+              "libs/zc-page-builder/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-login": {
+      "root": "libs/zc-login",
+      "sourceRoot": "libs/zc-login/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-login/tsconfig.lib.json",
+            "project": "libs/zc-login/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-login/src/test.ts",
+            "tsConfig": "libs/zc-login/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-login/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-login/tsconfig.lib.json",
+              "libs/zc-login/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-manage-app": {
+      "root": "libs/zc-manage-app",
+      "sourceRoot": "libs/zc-manage-app/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-manage-app/tsconfig.lib.json",
+            "project": "libs/zc-manage-app/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-manage-app/src/test.ts",
+            "tsConfig": "libs/zc-manage-app/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-manage-app/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-manage-app/tsconfig.lib.json",
+              "libs/zc-manage-app/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-menu": {
+      "root": "libs/zc-menu",
+      "sourceRoot": "libs/zc-menu/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-menu/tsconfig.lib.json",
+            "project": "libs/zc-menu/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-menu/src/test.ts",
+            "tsConfig": "libs/zc-menu/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-menu/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-menu/tsconfig.lib.json",
+              "libs/zc-menu/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-tabs": {
+      "root": "libs/zc-tabs",
+      "sourceRoot": "libs/zc-tabs/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-tabs/tsconfig.lib.json",
+            "project": "libs/zc-tabs/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-tabs/src/test.ts",
+            "tsConfig": "libs/zc-tabs/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-tabs/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-tabs/tsconfig.lib.json",
+              "libs/zc-tabs/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-step-form": {
+      "root": "libs/zc-step-form",
+      "sourceRoot": "libs/zc-step-form/src",
+      "projectType": "library",
+      "prefix": "zc",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-step-form/tsconfig.lib.json",
+            "project": "libs/zc-step-form/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-step-form/src/test.ts",
+            "tsConfig": "libs/zc-step-form/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-step-form/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-step-form/tsconfig.lib.json",
+              "libs/zc-step-form/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "demo": {
+      "root": "apps/demo/",
+      "sourceRoot": "apps/demo/src",
+      "projectType": "application",
+      "prefix": "zc-ui",
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/demo",
+            "index": "apps/demo/src/index.html",
+            "main": "apps/demo/src/main.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.app.json",
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng/resources/themes/nova-light/theme.css",
+              "./node_modules/primeng/resources/primeng.min.css",
+              "./node_modules/font-awesome/css/font-awesome.min.css",
+              "apps/demo/src/styles.scss"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/demo/src/environments/environment.ts",
+                  "with": "apps/demo/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -43,7 +514,14 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
@@ -67,34 +545,287 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "styles.css"
-            ],
+            "main": "apps/demo/src/test.ts",
+            "polyfills": "apps/demo/src/polyfills.ts",
+            "tsConfig": "apps/demo/tsconfig.spec.json",
+            "karmaConfig": "apps/demo/karma.conf.js",
+            "styles": ["apps/demo/src/styles.scss"],
             "scripts": [],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ]
+            "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"]
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "apps/demo/tsconfig.app.json",
+              "apps/demo/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
+        }
+      }
+    },
+    "demo-e2e": {
+      "root": "apps/demo-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/demo-e2e/cypress.json",
+            "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "demo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/demo-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    },
+    "zc-image-slideshow": {
+      "root": "libs/zc-image-slideshow",
+      "sourceRoot": "libs/zc-image-slideshow/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-image-slideshow/src/test.ts",
+            "tsConfig": "libs/zc-image-slideshow/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-image-slideshow/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-image-slideshow/tsconfig.lib.json",
+              "libs/zc-image-slideshow/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-form-modal": {
+      "root": "libs/zc-form-modal",
+      "sourceRoot": "libs/zc-form-modal/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-form-modal/src/test.ts",
+            "tsConfig": "libs/zc-form-modal/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-form-modal/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-form-modal/tsconfig.lib.json",
+              "libs/zc-form-modal/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-pdf-generator": {
+      "root": "libs/zc-pdf-generator",
+      "sourceRoot": "libs/zc-pdf-generator/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-pdf-generator/tsconfig.lib.json",
+            "project": "libs/zc-pdf-generator/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-pdf-generator/src/test.ts",
+            "tsConfig": "libs/zc-pdf-generator/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-pdf-generator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-pdf-generator/tsconfig.lib.json",
+              "libs/zc-pdf-generator/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "clients-qlana": {
+      "root": "libs/clients/qlana",
+      "sourceRoot": "libs/clients/qlana/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/clients/qlana/tsconfig.lib.json",
+            "project": "libs/clients/qlana/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/clients/qlana/src/test.ts",
+            "tsConfig": "libs/clients/qlana/tsconfig.spec.json",
+            "karmaConfig": "libs/clients/qlana/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/clients/qlana/tsconfig.lib.json",
+              "libs/clients/qlana/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-accordion": {
+      "root": "libs/zc-accordion",
+      "sourceRoot": "libs/zc-accordion/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-accordion/tsconfig.lib.json",
+            "project": "libs/zc-accordion/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-accordion/src/test.ts",
+            "tsConfig": "libs/zc-accordion/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-accordion/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-accordion/tsconfig.lib.json",
+              "libs/zc-accordion/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "zc-charts": {
+      "root": "libs/zc-charts",
+      "sourceRoot": "libs/zc-charts/src",
+      "projectType": "library",
+      "prefix": "zc-ui",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/zc-charts/tsconfig.lib.json",
+            "project": "libs/zc-charts/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/zc-charts/src/test.ts",
+            "tsConfig": "libs/zc-charts/tsconfig.spec.json",
+            "karmaConfig": "libs/zc-charts/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/zc-charts/tsconfig.lib.json",
+              "libs/zc-charts/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
         }
       }
     }
   },
-  "defaultProject": "demo"
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics",
+    "packageManager": "npm"
+  },
+  "schematics": {
+    "@nrwl/schematics:component": {
+      "spec": false
+    },
+    "@nrwl/schematics:application": {
+      "style": "scss"
+    },
+    "@nrwl/schematics:library": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "zc"
 }

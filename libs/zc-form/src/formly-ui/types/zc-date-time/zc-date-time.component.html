@@ -1,0 +1,37 @@
+<!-- <label *ngIf="to.mode == 'view' || to.readonly; else: fieldTemp">
+  {{ (formControl.value | date: to.dateFormat || 'd-MMM-yyyy') || '---' }}
+</label> -->
+
+<label *ngIf="to.mode == 'view' || to.readonly; else: fieldTemp">
+    <span zcFieldValueFormat type="datetime" [value]="formControl.value"></span>
+</label>
+
+<ng-template #fieldTemp>
+  <p-calendar
+    [icon]="to.timeOnly ? 'icon-time-clock' : 'icon-calendar'"
+    [minDate]="to.minDate"
+    [maxDate]="to.maxDate"
+    [readonlyInput]="to.readonlyInput"
+    [showTime]="to.showTime || true"
+    [showSeconds]="to.showSeconds || false"
+    [panelStyleClass]="to.cssClass"
+    [timeOnly]="to.timeOnly"
+    [hourFormat]="to.hourFormat || '24'"
+    [dateFormat]="to.dateFormat || 'dd/mm/yy'"
+    [disabledDays]="to.disabledDays || null"
+    [disabledDates]="to.disabledDates || null"
+    [selectionMode]="to.selectionMode || 'single'"
+    [inline]="to.inline || false"
+    (onSelect)="onSelect($event)"
+    (onYearChange)="onYearChange($event)"
+    (onMonthChange)="onMonthChange($event)"
+    [monthNavigator]="to.monthNavigator || 'true'"
+    [yearNavigator]="to.yearNavigator || 'true'"
+    [yearRange]="to.yearRange || '2000:2030'"
+    appendTo="body"
+    [(ngModel)]="to.filedDate"
+    [showIcon]="true"
+    [placeholder]="to.placeholder"
+  >
+  </p-calendar>
+</ng-template>

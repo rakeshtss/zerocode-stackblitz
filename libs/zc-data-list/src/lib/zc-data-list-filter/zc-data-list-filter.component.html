@@ -1,0 +1,126 @@
+<ng-template #advancedFilter [ngIf]="filterType == 'advanced'" [ngIfElse]="columnFilter">
+  <div class="filter-header" *ngIf="options.properties.filter.title">
+    <h2>{{ options.properties.filter.title }}</h2>
+  </div>
+  <div class="row">
+    <div class="fltr-btns" *ngIf="filterButtonPossion == 'top'">
+      <ng-container *ngTemplateOutlet="filterButtons"></ng-container>
+    </div>
+  </div>
+  <div class="zc-data-list-filters">
+    <div *ngFor="let col of showCols" class="ui-g ui-fluid ui-fluid-filters-div" [ngClass]="col.cssClass"
+      [ngStyle]="col.cssStyle" ngbDropdown>
+      <div *ngIf="col.filter && col.filter.required" class="ui-g-12">
+        <div>
+          <label>{{ col.label }}</label>
+          <ng-container *ngTemplateOutlet="filterInputs; context: { col: col }">
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="filter-footer" *ngIf="filterButtonPossion == 'bottom'">
+      <ng-container *ngTemplateOutlet="filterButtons"></ng-container>
+    </div>
+  </div>
+</ng-template>
+<ng-template #columnFilter>
+  <ng-container *ngTemplateOutlet="filterInputs; context: { col: column }">
+  </ng-container>
+</ng-template>
+<ng-template #filterInputs let-col="col">
+  <ng-container [ngSwitch]="col.filter.type">
+    <div *ngSwitchCase="'radio'">
+      <div class="p-2" *ngFor="let opt of col.options">
+        <p-radioButton name="groupname" [(ngModel)]="opt.val" [value]="opt.value" [label]="opt.label"
+          (onClick)="filterTableData(opt.val, col)"></p-radioButton>
+      </div>
+    </div>
+    <div *ngSwitchCase="'integer'" class="ui-inputgroup">
+      <input style="width: 100%;" [readonly]="col.filter.readonly" [(ngModel)]="col.filter.value"
+        [placeholder]="col.filter.placeholder || 'Search'" type="number"
+        (input)="filterTableData($event.target.value, col)" />
+      <button pButton type="button" icon="icon-search" class="ui-button-warn"></button>
+    </div>
+    <div *ngSwitchCase="'integerrange'">
+      <p *ngIf="col.filter.value">
+        Range: {{ col.filter.value[0] + ' - ' + col.filter.value[1] }}
+      </p>
+      <p-slider [(ngModel)]="col.filter.value" [min]="col.filter.min" [max]="col.filter.max" [style]="{ width: '14em' }"
+        [range]="true"></p-slider>
+    </div>
+    <div *ngSwitchCase="'select'">
+      <p-dropdown [showClear]="!col.filter.readonly" [readonly]="col.filter.readonly" [options]="col.options"
+        [(ngModel)]="col.filter.value" [placeholder]="col.filter.placeholder || 'Select'" optionLabel="label"
+        [dataKey]="'value'" [inputId]="'value'" appentTo="body" [style]="{ width: '100%' }"
+        (onChange)="filterTableData($event, col)"></p-dropdown>
+    </div>
+    <div *ngSwitchCase="'multiselect'">
+      <p-multiSelect [options]="col.options" [(ngModel)]="col.filter.value" [style]="{ width: '100%' }"
+        [panelStyle]="{ minWidth: '12em' }" (onChange)="filterTableData($event, col)"></p-multiSelect>
+    </div>
+    <div *ngSwitchCase="'multicheckbox'">
+      <p-listbox [options]="col.options" [(ngModel)]="col.filter.value" multiple="multiple" checkbox="checkbox"
+        filter="filter" optionLabel="label" (onChange)="filterTableData(col.filter.value, col)">
+      </p-listbox>
+    </div>
+    <div *ngSwitchCase="'date'">
+      <p-calendar placeholder="Date" icon="icon-calendar" [(ngModel)]="col.filter.value" appendTo="body"
+        [showIcon]="false" (onSelect)="filterTableData(col.filter.value, col)"></p-calendar>
+    </div>
+    <div *ngSwitchCase="'datetime'">
+      <p-calendar placeholder="Date Time" icon="icon-calendar" [(ngModel)]="col.filter.value" appendTo="body"
+        [showIcon]="false" (onSelect)="filterTableData(col.filter.value, col)"></p-calendar>
+    </div>
+    <div *ngSwitchCase="'time'">
+      <p-calendar placeholder="Time" icon="icon-calendar" [(ngModel)]="col.filter.value" appendTo="body"
+        [showIcon]="false" (onSelect)="filterTableData(col.filter.value, col)"></p-calendar>
+    </div>
+    <div *ngSwitchCase="'daterange'">
+      <p-calendar placeholder="Date Range" icon="icon-calendar" [numberOfMonths]="2" [(ngModel)]="col.filter.value"
+        selectionMode="range" appendTo="body" [showIcon]="false" (onSelect)="filterTableData(col.filter.value, col)">
+      </p-calendar>
+    </div>
+    <div *ngSwitchCase="'checkbox'">
+      <input style="width: 100%;" type="checkbox" [(ngModel)]="col.filter.value" placeholder="Search"
+        (input)="filterTableData($event.target.value, col)" />
+    </div>
+    <div *ngSwitchDefault class="ui-inputgroup">
+      <input style="width: 100%;" type="text" [(ngModel)]="col.filter.value" maxlength="560"
+        [readonly]="col.filter.readonly" [placeholder]="col.filter.placeholder || 'Search'"
+        (input)="filterTableData($event.target.value, col)" />
+      <button pButton type="button" icon="icon-search" class="ui-button-warn"></button>
+    </div>
+  </ng-container>
+</ng-template>
+<ng-template #filterButtons>
+  <div class="row col-12  p-2 m-0">
+    <div class="row col justify-content-md-center m-0">
+      <button type=" button" (click)="applyFilters()" class="btn btn-primary filter-clear-btn mr-1" *ngIf="
+          options.properties.filter.action &&
+          options.properties.filter.action.submit &&
+          options.properties.filter.action.submit.label
+        ">
+        {{ options.properties.filter.action.submit.label }}
+      </button>
+      <button type="button" (click)="resetFilters()" class="btn btn-secondary filter-clear-btn mr-1" *ngIf="
+          options.properties.filter.action &&
+          options.properties.filter.action.reset &&
+          options.properties.filter.action.reset.label
+        ">
+        {{ options.properties.filter.action.reset.label }}
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #emptySearchErrorMsgModal let-modal>
+  <div class="modal-body">
+    <form>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div style='padding: 8px;'>{{emptySearchErrorMsg}}</div>
+    </form>
+  </div>
+</ng-template>

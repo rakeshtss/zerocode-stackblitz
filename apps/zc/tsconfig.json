@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "types": ["jasmine"]
+  },
+  "include": [
+    "**/*.ts",
+    "../../lazy-module.config.ts",
+    "../../libs/zc-utilities/src/directives/zc-field-value-formater.directive.ts",
+    "../../libs/zc-utilities/src/lib/services/actions.service.ts"
+  ]
+}

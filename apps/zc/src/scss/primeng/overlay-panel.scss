@@ -1,0 +1,19 @@
+.no-padding {
+  .ui-overlaypanel-content {
+    padding: 0px;
+    .ui-panel {
+      margin-bottom: 0;
+      .ui-panel-content-wrapper {
+        .ui-panel-content {
+          padding: 0;
+          .mat-tab-body {
+            padding: 10px;
+          }
+        }
+        .ui-panel-footer {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

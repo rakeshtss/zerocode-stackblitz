@@ -1,0 +1,77 @@
+.card-view .ui-table-tbody {
+  display: flex;
+  flex-wrap: wrap;
+  .card-template-4 {
+    width: 20%;
+    display: flex;
+    padding: 0 10px 10px 0;
+    background: #fff;
+    @media (max-width: 991px) {
+      width: 25%;
+    }
+    @media (max-width: 767px) {
+      width: 50%;
+    }
+    .card-widget {
+      // padding: 0 15px;
+      width: 100%;
+      border: 1px solid #ccc;
+      box-shadow: 0px 0px 6px #999;
+      border-radius: 0;
+      .card-body {
+        /*  display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between; */
+        .card-body-left {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          .publishers {
+            padding-left: 15px;
+            h4 {
+              margin: 0;
+            }
+            p {
+              margin: 0;
+            }
+          }
+          // padding: 20px 0;
+          .card-img {
+            width: 55px;
+            height: 55px;
+          }
+        }
+        .description {
+          padding: 15px;
+          color: #fff;
+          p {
+            margin: 0;
+          }
+        }
+        .card-body-right {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          p {
+            margin: 8px;
+          }
+          a {
+            color: #fff;
+            padding: 3px 5px;
+            border-radius: 3px;
+          }
+        }
+        .card-icon {
+          text-align: right;
+          padding: 10px 0;
+          span {
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 3px;
+          }
+        }
+      }
+    }
+  }
+}

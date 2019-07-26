@@ -1,0 +1,41 @@
+.card-view .ui-table-tbody {
+  display: flex;
+  flex-wrap: wrap;
+  .card-template-1 {
+    width: 33.33%;
+    display: flex;
+    justify-content: center;
+    // padding: 0 20px 0 0;
+    padding: 0 20px 20px 0;
+    background: #fff;
+    @media (max-width: 991px) {
+      width: 50%;
+    }
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+    .card-widget {
+      padding: 15px;
+      width: 100%;
+      border: 1px solid #fbfafa;
+      // box-shadow: 0px 0px 2px #999;
+      .card-body {
+        .card-title {
+          margin: 0;
+        }
+        .card-text {
+          margin-top: 0;
+        }
+        .card-img-bottom {
+          max-width: 220px;
+          width: 100%;
+        }
+      }
+    }
+    > div[dynamic-template-1] {
+      display: flex;
+      width: 100%;
+      border-top: 2px solid #000;
+    }
+  }
+}

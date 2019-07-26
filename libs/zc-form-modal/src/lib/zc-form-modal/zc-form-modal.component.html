@@ -1,0 +1,23 @@
+<ng-container *ngIf="inlineForm">
+  <zc-com-render
+    type="form"
+    [options]="inlineFormOptions"
+    [showHideWidget]="true"
+  ></zc-com-render>
+</ng-container>
+
+<ng-template #zcFormModal let-c="close" let-d="dismiss">
+  <!--
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{inlineFormOptions.title}}</h4>
+
+    </div>
+  -->
+  <div class="modal-body">
+    <zc-com-render
+      type="form"
+      [options]="inlineFormOptions"
+      [showHideWidget]="true"
+    ></zc-com-render>
+  </div>
+</ng-template>

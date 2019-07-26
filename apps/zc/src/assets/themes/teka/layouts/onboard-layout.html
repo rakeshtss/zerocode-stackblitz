@@ -1,0 +1,28 @@
+<div class="back-groud-image"></div>
+<div class="login-container">
+  <router-outlet></router-outlet>
+  <div class="app-links" *ngIf="ly.appList && ly.appList.length>1">
+    <ul class="nav">
+      <li class="nav-item" *ngFor="let app of ly.appList">
+        <a class="nav-link active" [routerLink]="[ '/'+app.code]">{{app.name}}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="teka-logo">
+    <img src="assets/themes/teka/teka/images/teka-logo-white.png" alt="">
+  </div>
+</div>
+<footer class="login-footer">
+  <div class="container footer-content">
+    <p>&copy; 2019 Teka All Rights Reserved. </p>
+    <ul>
+      <li class="right-border"><a href="javascript:void(0);">Faq's</a></li>
+
+      <li class="right-border"><a href="javascript:void(0);">Privacy Policy</a></li>
+
+      <li class="right-border"><a href="javascript:void(0);">Terms of Use</a></li>
+
+      <li><a href="javascript:void(0)">Contact Us</a></li>
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,60 @@
+.accordion {
+  width: 100%;
+  margin: 0 auto;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+ul .shutter-panel-collapse {
+  padding-left: 1em;
+  overflow: hidden;
+  display: none;
+}
+ul .shutter-panel-collapse.show {
+  /*display: block;*/
+}
+ul li {
+  margin: 0.5em 0;
+}
+ul li a.panel-heading {
+  width: 100%;
+  display: block;
+  background: #8e8343;
+  color: #fefefe;
+  padding: 5px 10px;
+  border-radius: 0.15em;
+  transition: background 0.3s ease;
+}
+ul li a.panel-heading:hover {
+  background: #008080;
+}
+
+ul.tabs {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li {
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+ul.tabs li.current {
+  background: #ededed;
+  color: #222;
+}
+
+.tab-content {
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+
+.tab-content.current {
+  display: inherit;
+}

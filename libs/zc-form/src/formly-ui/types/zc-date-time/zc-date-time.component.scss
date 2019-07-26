@@ -1,0 +1,13 @@
+.only-hours .ui-timepicker > .ui-minute-picker {
+  display: none;
+}
+.only-hours {
+  .ui-timepicker {
+    .ui-minute-picker {
+      display: none;
+    }
+    .ui-separator {
+      display: none;
+    }
+  }
+}

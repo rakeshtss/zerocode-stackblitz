@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~bootstrap/scss/bootstrap-grid';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/alert';
+@import '~bootstrap/scss/tooltip';
+@import '~bootstrap/scss/progress';
+@import '~bootstrap/scss/badge';
+// @import '~bootstrap/scss/root';
+@import '~bootstrap/scss/buttons';
+@import '~bootstrap/scss/dropdown';
+@import '~bootstrap/scss/forms';
+@import '~bootstrap/scss/input-group';
+@import '~bootstrap/scss/utilities';
+@import '~bootstrap/scss/custom-forms';
+@import '~bootstrap/scss/close';
+@import '~bootstrap/scss/modal';
+@import './scss/layout.scss';
+@import '~ngx-toastr/toastr-bs4-alert';
+@import './scss/zerocode.scss';
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.mat-list-item-content {
+  justify-content: space-between !important;
+}
+
+.mat-list-base {
+  padding-top: 0px !important;
+}
+
+// .only-hours .ui-timepicker>.ui-minute-picker{
+//   display: none;
+// }
+.only-hours {
+  .ui-timepicker {
+    .ui-minute-picker {
+      display: none;
+    }
+    .ui-separator {
+      display: none;
+    }
+  }
+}

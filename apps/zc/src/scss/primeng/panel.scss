@@ -1,0 +1,89 @@
+.ui-panel {
+  border: 1px solid #e6eaee;
+  margin-bottom: $margin10;
+  .ui-panel-titlebar {
+    background: $white;
+    // padding: $padding15 $padding20 ;
+    // font-size: 18px;
+    // border: none;
+  }
+  .ui-panel-content-wrapper {
+    .ui-panel-content {
+      padding: $padding20;
+    }
+    .ui-panel-footer {
+      background: $panelFooter;
+      padding: $padding15;
+    }
+  }
+  .ui-widget-content {
+    border-color: #e6eaee;
+  }
+}
+.dashed-panel {
+  &.ui-panel {
+    border: 1px dashed #ccc;
+    .ui-panel-titlebar {
+      background: $white;
+      border-bottom: 1px dashed #ccc;
+    }
+  }
+}
+.white-panel {
+  .ui-panel-titlebar {
+    background: $white;
+  }
+  .ui-panel-content-wrapper {
+    .ui-panel-footer {
+      background: $white;
+    }
+  }
+}
+.tabs-inside-Panel {
+  &.ui-panel {
+    border: 1px dashed #ccc;
+    .ui-panel-content-wrapper {
+      .ui-panel-content {
+        padding: $padding0;
+      }
+      .ui-panel-footer {
+        background: $white;
+        border-top: 1px dashed #ccc;
+        padding: $padding5;
+      }
+    }
+  }
+}
+.noBorder-pannel {
+  &.ui-panel {
+    border: $borderNone;
+  }
+}
+.fields-form {
+  .noBorder-pannel {
+    background: #fbfbfb;
+    margin-bottom: $margin0;
+    .ui-panel-content-wrapper {
+      .ui-panel-footer {
+        background: $panelFooter2;
+      }
+    }
+  }
+}
+.app-create-widget {
+  .ui-panel-content-wrapper {
+    .ui-panel-content {
+      padding: $padding0;
+    }
+  }
+}
+.light-tabs-Panel {
+  &.ui-panel {
+    .ui-panel-content-wrapper {
+      .ui-panel-content {
+        padding: $padding0;
+        background: $body-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<div *ngIf="options.displayTitle" class="zc-widget-header-title">
+  <h2>{{options.title}}</h2>
+  <span class="description" *ngIf="options.description">{{options.description}}</span>
+</div>
+<h3>Pie Chart</h3>
+<!-- <ngx-charts-pie-chart
+  *ngIf="options.chartType === 'pie'"
+  class="chart-container"
+  [view]="options.view"
+  [results]="options.data"
+  [animations]="options.animations"
+  [legend]="options.showLegend"
+  [legendTitle]="options.legendTitle"
+  [explodeSlices]="options.explodeSlices"
+  [labels]="options.labels"
+  [doughnut]="options.doughnut"
+  [arcWidth]="options.arcWidth"
+  [gradient]="options.gradient"
+  [tooltipDisabled]="options.tooltipDisabled"
+  [tooltipText]="options.tooltipText"
+  (dblclick)="dblclick($event)"
+  (legendLabelClick)="onLegendLabelClick($event)"
+  (select)="select($event)">
+</ngx-charts-pie-chart>
+
+
+<ngx-charts-advanced-pie-chart *ngIf="options.chartType === 'advanced-pie'" class="chart-container"
+  [view]="options.view" [scheme]="options.colorScheme" [results]="options.data"
+  [valueFormatting]="options.valueFormatting" [animations]="options.animations"
+  (legendLabelClick)="onLegendLabelClick($event)" [gradient]="options.gradient"
+  [tooltipDisabled]="options.tooltipDisabled" [tooltipText]="options.tooltipText" (select)="select($event)">
+</ngx-charts-advanced-pie-chart>
+
+<ngx-charts-pie-grid *ngIf="options.chartType === 'pie-grid'" class="chart-container" [view]="options.view"
+  (legendLabelClick)="onLegendLabelClick($event)" [results]="options.data" [animations]="options.animations"
+  [tooltipDisabled]="options.tooltipDisabled" [tooltipText]="options.tooltipText" (select)="select($event)">
+</ngx-charts-pie-grid>
+ -->

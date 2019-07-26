@@ -1,0 +1,38 @@
+.appManagment {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  .mngContent {
+    text-align: center;
+    flex: 0 0 33.33%;
+    padding: 10px;
+    outline: none;
+    .mngdescription {
+      border: 1px solid #d9d9df;
+      padding: 25px;
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      background: #fff;
+      p {
+        margin: 0;
+      }
+      .description {
+        padding-top: 10px;
+        text-align: left !important;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      span {
+        font-size: 3rem;
+      }
+      &:hover {
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+      }
+    }
+  }
+}

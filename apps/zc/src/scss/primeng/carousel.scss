@@ -1,0 +1,63 @@
+@import '../../app/config/theme.scss';
+.ui-carousel {
+  position: relative;
+  border-top: $borderNone;
+  background: $lightMatTabsBg;
+  padding: $padding15;
+  .ui-carousel-header {
+    padding: $padding0;
+    background: transparent;
+    border: $borderNone;
+    height: $h-0;
+    .ui-carousel-page-links {
+      display: none;
+    }
+    .ui-carousel-button {
+      position: absolute;
+      top: 30px;
+      font-size: $fontSize32;
+      &.ui-carousel-next-button {
+        right: 5px;
+      }
+      &.ui-carousel-prev-button {
+        left: 5px;
+      }
+    }
+  }
+  .ui-carousel-viewport {
+    width: 95%;
+    margin: 0 auto;
+    .ui-carousel-items {
+      .ui-carousel-item {
+        margin-right: $margin10;
+        // min-height: $h-80;
+        a {
+          padding: $padding5;
+          text-align: center;
+          display: block;
+          &.active {
+            border: 1px solid $primary;
+          }
+          i {
+            color: $iconColor1;
+            display: block;
+            font-size: $fontSize40;
+            padding: $padding15 $padding0;
+          }
+        }
+      }
+    }
+  }
+}
+.ui-carousel-prev-button {
+  font-family: 'zerocode' !important;
+  &:before {
+    content: '\52' !important;
+  }
+}
+.ui-carousel-next-button {
+  font-family: 'zerocode' !important;
+  &:before {
+    content: '\71' !important;
+  }
+}

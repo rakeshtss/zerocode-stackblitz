@@ -1,0 +1,27 @@
+<!-- <label *ngIf="to.mode == 'view' || to.readonly; else: fieldTemp">
+  {{ (formControl.value | date: to.dateFormat || 'd-MMM-yyyy') || '---' }}
+</label> -->
+
+<label *ngIf="to.mode == 'view' || to.readonly; else: fieldTemp">
+    <span zcFieldValueFormat type="time" [value]="formControl.value"></span>
+</label>
+
+<ng-template #fieldTemp>
+  <p-calendar
+    [icon]="'icon-time-clock'"
+    [readonlyInput]="to.readonlyInput"
+    [showTime]="to.showTime || true"
+    [showSeconds]="to.showSeconds || false"
+    [panelStyleClass]="to.cssClass"
+    [timeOnly]="true"
+    [hourFormat]="to.hourFormat || '24'"
+    [selectionMode]="to.selectionMode || 'single'"
+    [inline]="to.inline || false"
+    (onSelect)="onSelect($event)"
+    appendTo="body"
+    [(ngModel)]="to.filedDate"
+    [showIcon]="true"
+    [placeholder]="to.placeholder"
+  >
+  </p-calendar>
+</ng-template>

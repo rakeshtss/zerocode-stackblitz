@@ -1,0 +1,18 @@
+<div class="zc-accordion" [ngClass]="options.cssClass" [ngStyle]="options.cssStyle">
+  <p-accordion [multiple]="options.multiple" [expandIcon]="options.expandIcon || 'pi pi-fw pi-chevron-right'"
+    [collapseIcon]="options.collapseIcon || 'pi pi-fw pi-chevron-down'" (onOpen)="onTabOpen($event)"
+    (onClose)="onTabClose($event)">
+    <p-accordionTab [cache]="options.cache || true"
+      [transitionOptions]="(options.transitionOptions)?options.transitionOptions+'ms':'400ms'"
+      *ngFor="let item of options.accordion" [disabled]="checkCondition(item.disabled)">
+      <p-header>
+        <i class="pr-2" *ngIf="item.icon" [ngClass]="item.icon"></i>
+        <span class="zc-tab-title">{{ item.title }}</span>
+      </p-header>
+      <div class="col-lg-12">
+        <zc-page-render [options]="{ widgets: item.widgets }"></zc-page-render>
+      </div>
+    </p-accordionTab>
+
+  </p-accordion>
+</div>

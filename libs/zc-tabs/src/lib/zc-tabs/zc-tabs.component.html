@@ -1,0 +1,15 @@
+<div class="zc-tabs" [ngClass]="options.cssClass">
+  <mat-tab-group>
+    <mat-tab *ngFor="let item of options.tabs">
+      <ng-template mat-tab-label>
+        <i class="pr-2" *ngIf="item.icon" [ngClass]="item.icon" matTooltip="{{item.title}}" matTooltipPosition="right"></i>
+        <span class="zc-tab-title">{{ item.title }}</span>
+      </ng-template>
+      <ng-template matTabContent>
+        <div class="col-lg-12">
+          <zc-page-render [options]="{ widgets: item.widgets }"></zc-page-render>
+        </div>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</div>

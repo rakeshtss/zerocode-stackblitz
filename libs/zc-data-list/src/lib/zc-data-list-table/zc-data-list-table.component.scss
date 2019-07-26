@@ -1,0 +1,311 @@
+.zc-widget-data-list {
+  padding: 0;
+
+  .ui-table {
+    border: 1px solid #ccc;
+
+    .ui-table-caption {
+      border: none !important;
+      text-align: unset !important;
+    }
+
+    .row-col-link {
+      color: #1d72b7;
+      text-decoration: none;
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    color: #252e46 !important;
+
+    .ui-table-caption {
+      background: #fff !important;
+    }
+
+    .ui-table-thead {
+      tr th {
+        border: unset !important;
+        border-bottom: 1px solid #d5d5d5 !important;
+        padding: 10px !important;
+        text-align: left;
+        font-weight: normal;
+        font-size: 16px;
+      }
+    }
+
+    .ui-table-tbody {
+      tr td {
+        padding: 0.85em 0.5em !important;
+        border: unset !important;
+        border-bottom: 1px solid #d5d5d5 !important;
+        background-color: inherit;
+      }
+
+      tr:nth-child(even) {
+        background-color: #fafafb;
+      }
+
+      tr:nth-child(odd) {
+        background-color: #fff;
+      }
+    }
+
+    .ui-sortable-column.ui-state-highlight {
+      background-color: #ebedf0 !important;
+      color: #000 !important;
+      outline: none !important;
+    }
+  }
+
+  .ui-table .ui-paginator-bottom {
+    border-top: 0 none;
+    border-left: none;
+    border-right: none;
+  }
+
+  .ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
+    background-color: #ebedf0;
+  }
+
+  .ui-table .ui-table-thead > tr > th,
+  .ui-table .ui-table-tfoot > tr > td {
+    background-color: #ebedf0;
+    border: 1px solid #d9d9d9;
+    color: #1b1d1f;
+  }
+
+  .ui-table .ui-table-tbody > tr {
+    background-color: #ffffff;
+    color: #222222;
+  }
+
+  .ui-table .ui-table-tbody > tr > td {
+    border: 1px solid #d5d5d5;
+    background-color: inherit;
+  }
+
+  .ui-table .ui-table-tbody > tr.ui-state-highlight {
+    background-color: #186ba0 !important;
+    color: #ffffff;
+  }
+
+  .ui-table .ui-table-tbody > tr.ui-contextmenu-selected {
+    background-color: #3ca1e2;
+    color: #ffffff;
+  }
+
+  .ui-table .ui-sortable-column .ui-sortable-column-icon {
+    color: #1b1d1f;
+  }
+
+  .ui-table .ui-sortable-column.ui-state-highlight {
+    background-color: #186ba0;
+    color: #ffffff;
+  }
+
+  .ui-table .ui-sortable-column.ui-state-highlight .ui-sortable-column-icon {
+    color: #ffffff;
+  }
+
+  .ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
+    background-color: #eeeeee;
+    color: #212121;
+  }
+
+  .ui-table
+    .ui-sortable-column:not(.ui-state-highlight):hover
+    .ui-sortable-column-icon {
+    color: #212121;
+  }
+
+  .ui-table.ui-table-hoverable-rows
+    .ui-table-tbody
+    > tr:not(.ui-state-highlight):hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+    color: #212121;
+  }
+
+  @media (max-width: 35em) {
+    .ui-table-responsive .ui-table-tbody > tr {
+      border-top: 1px solid #d5d5d5;
+      border-bottom: 1px solid #d5d5d5;
+    }
+  }
+
+  /* Row Reorder */
+
+  .ui-table .ui-table-tbody > tr.ui-table-dragpoint-top > td {
+    box-shadow: inset 0 2px 0 0 #186ba0;
+  }
+
+  .ui-table .ui-table-tbody > tr.ui-table-dragpoint-bottom > td {
+    box-shadow: inset 0 -2px 0 0 #186ba0;
+  }
+
+  .ui-table .ui-table-thead > tr > th,
+  .ui-table .ui-table-tfoot > tr > td {
+    background-color: #ebedf0;
+    border-color: #d9d9d9;
+  }
+
+  .ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
+    background-color: #d3d5d8;
+    border-color: #d9d9d9;
+  }
+
+  .ui-table .ui-table-tbody > tr:nth-child(even) {
+    background-color: #fafafb;
+  }
+
+  .ui-table .ui-table-tbody > tr:nth-child(even).ui-state-highlight {
+    background-color: #186ba0;
+    color: #ffffff;
+  }
+
+  .ui-table .ui-table-tbody > tr:nth-child(even).ui-contextmenu-selected {
+    background-color: #3ca1e2;
+    color: #ffffff;
+  }
+
+  th .dropdown-toggle::after {
+    display: none !important;
+  }
+
+  th .dropdown-menu.show {
+    top: 25px !important;
+    left: 0 !important;
+    width: 200px;
+    box-shadow: 0px 0px 25px #c5c5c5;
+    padding: 0;
+    border: none;
+  }
+
+  th .dropdown-menu.show ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  th .dropdown-menu.show ul li {
+    border-bottom: 1px solid #eaedf2;
+    position: relative;
+  }
+
+  th .dropdown-menu.show ul li:last-child {
+    border-bottom: none;
+  }
+
+  th .dropdown-menu.show ul li input {
+    border: none !important;
+    padding: 12px 30px 12px 12px !important;
+    border-radius: 5px;
+  }
+
+  th .dropdown-menu.show ul li .icon-search {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+  }
+
+  th .dropdown-menu .dropdown-item {
+    color: #424242;
+    padding: 10px;
+  }
+
+  th .dropdown-menu .dropdown-item i {
+    color: #9f9f9f;
+    font-size: 18px;
+    padding-right: 5px;
+  }
+
+  th
+    .dropdown-menu
+    .dropdown-item.ui-state-highlight
+    .ui-sortable-column-icon:before {
+    color: #424242;
+    font-family: 'tssFont';
+  }
+
+  .ui-dropdown {
+    border: none !important;
+    padding: 5px;
+  }
+
+  .ui-multiselect {
+    border: none !important;
+    padding: 5px;
+  }
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  padding: 0;
+
+  h2 {
+    flex: 1;
+
+    // text-align: left;
+  }
+}
+
+.group-actions {
+  display: flex;
+  align-items: center;
+}
+
+.pi-search:before {
+  content: '\e155';
+  font-family: 'tssFont';
+}
+
+.pi-sort:before {
+  content: '\e38e';
+  color: #9e9e9e;
+  font-family: 'tssFont';
+}
+
+.pi-sort-up:before {
+  content: '\e310';
+  color: #9e9e9e;
+  font-family: 'tssFont';
+}
+
+.pi-sort-down:before {
+  content: '\e30d';
+  color: #9e9e9e;
+  font-family: 'tssFont';
+}
+
+.zc-table-filter-widget {
+  padding: 0;
+
+  .zc-table-filter {
+    background-color: #ebedf0;
+    padding: 0;
+    border: 1px solid #ccc;
+  }
+}
+
+.zc-form-add-btn {
+  button {
+    margin-left: 5px;
+  }
+
+  i {
+    padding: 3px;
+    font-size: 20px;
+  }
+}
+
+.zc-widget-data-list + .zc-table-filter-widget {
+  padding-left: 15px;
+}
+
+.zc-table-filter-widget + .zc-widget-data-list {
+  padding-left: 15px;
+}

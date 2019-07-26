@@ -1,0 +1,33 @@
+<!--
+  <div [formGroup]="form">
+    <div class="custom-control custom-radio" *ngFor="let option of to.options | formlySelectOptions:field | async; let i = index;">
+      <input class="custom-control-input" type="radio" [id]="id + '_' + i" [name]="id" [class.is-invalid]="showError"
+        [attr.value]="option.value" [value]="option.value" [formControl]="formControl" [formlyAttributes]="field">
+      <label class="custom-control-label" [for]="id + '_' + i">
+        {{ option.label }}
+      </label>
+    </div>
+  </div>
+-->
+
+<label *ngIf="to.mode == 'view'; else: fieldTemp">
+  <span  zcFieldValueFormat type="radio" [properties]="to" [value]="formControl.value"></span>
+</label>
+<ng-template #fieldTemp>
+  <div class="field-radio" [ngClass]="{'readonly': to.readonly}">
+    <div *ngFor="let option of to.options; let i = index" class="radio">
+      <label class="custom-control custom-radio" >
+        <input [name]="id" [id]="id + '_' + i" type="radio" [value]="option" [formControl]="formControl"
+          [attr.value]="option" [checked]="
+            formControl.value &&
+            formControl.value.uid &&
+            option.uid == formControl.value.uid
+          " [formlyAttributes]="field" class="custom-control-input" />
+
+        <span class="custom-control-label">{{ option.name }}</span>
+        <span class="custom-control-indicator"></span>
+      </label>
+    </div>
+
+  </div>
+</ng-template>

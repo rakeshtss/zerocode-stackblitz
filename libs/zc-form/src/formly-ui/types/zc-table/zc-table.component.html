@@ -1,0 +1,96 @@
+<div *ngIf="!to.readonly && actions && actions.group && actions.group.add && !newRecord" class="table-group-action">
+  <a *ngIf="actions.group.add.component.type === 'inline'" (click)="addNewRecord()" class="btn btn-outline-primary">
+    {{ actions.group.add.label }}
+  </a>
+  <a (click)="openModal(actions.group.add, zcFormModal)"
+    class="btn btn-outline-primary">{{ actions.group.add.label }}</a>
+</div>
+<div *ngIf="newRecord">
+  <a style="float:right" (click)="newRecord = !newRecord" class="btn btn-outline-primary">x</a>
+  <div>
+    <!-- <zc-form [options]="newFormOptions"></zc-form> -->
+  </div>
+</div>
+
+<div *ngIf="showtable">
+  <p-table [columns]="cols" [value]="rows">
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of columns" [ngStyle]="col.inlineStyle || col.cssStyle">
+          {{ col.label }}
+        </th>
+        <th *ngIf="actions && actions.row && !to.readonly">Action</th>
+      </tr>
+    </ng-template>
+    <ng-template *ngIf="to.type !== 'card'" pTemplate="body" let-row let-inx="rowIndex">
+      <tr>
+        <td *ngFor="let col of cols" [ngClass]="col?.properties?.cssClass" [ngStyle]="col?.properties?.cssStyle">
+          <ng-template *ngIf="col.displayFormat" dynamic-template [template]="col.displayFormat"
+            [context]="{ item: row }"></ng-template>
+          <span *ngIf="col.type === 'autoincrement'"> {{ inx + 1 }} </span>
+          <span *ngIf="!col.displayFormat && !col.inline && col.type !== 'file' && col.type !== 'autoincrement'">
+            <span zcFieldValueFormat [type]="col.type" [properties]="col?.properties" [key]="col.name" formatType="row" [row]="row" ></span>
+          </span>
+          <span *ngIf="!col.displayFormat && !col.inline && col.properties && col.properties.multiple">
+            <span zcFieldValueFormat [type]="col.type" [properties]="col?.properties" [key]="col.name" formatType="row" [row]="row" ></span>
+          </span>
+          <span *ngIf="!col.displayFormat && !col.inline && col.type === 'file' && (!(col.properties && col.properties.multiple === true)) && col.type !== 'autoincrement'">
+            <label class="browseFileBtn" *ngIf="(to.readonly !==true) && !(row[col.name] && row[col.name][0])">
+              Browse<input type="file" (click)="$event.target.value = null" name="col.name"
+                (change)="detectFile($event.target.files, inx, col.name)" />
+            </label>
+            <span
+              *ngIf="row[col.name] && row[col.name] !== '' && row[col.name][0]"><span>{{ row[col.name][0]['name'] }}</span>
+              <a class="icon-delete" *ngIf="!to.readonly && to.mode !== 'view'"
+                (click)="remove(inx, col.name)"></a></span>
+          </span>
+          <span *ngIf="col.inline && (col.type === 'text' || col.type === 'number')">
+            <input [type]="col.type" [name]="col.name" [value]="row[col.name]" (blur)="detectInlineValue($event,inx,col)" [ngClass]="col?.cssClass" [ngStyle]="col?.cssStyle" />
+          </span>
+          <span *ngIf="col.inline && (col.type === 'radio')">
+            <input type="radio" [name]="col.name" value="true" [checked]="(row[col.name] === 'true' || row[col.name] === true) ? true : false" (click)="detectInlineValue($event,inx,col)" [ngClass]="col?.cssClass" [ngStyle]="col?.cssStyle" />
+          </span>
+        </td>
+        <td *ngIf="actions && actions.row && !to.readonly">
+          <a class="icon-edit p-1" *ngIf="actions.row.edit" (click)="edit(actions.row.edit, row, inx)"></a>
+          <a class="icon-delete p-1" *ngIf="actions.row.delete" (click)="delete(inx)"></a>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template *ngIf="to.type === 'card'" pTemplate="body" let-row let-rowIndex="rowIndex" let-columns="columns">
+      <div class="card" [ngClass]="to?.styling?.row?.cssClass" [ngStyle]="to.styling.row.cssStyle">
+        <ng-template dynamic-template [template]="to.cardTemplate" [context]="{ row: row }"></ng-template>
+      </div>
+    </ng-template>
+
+    <ng-template  pTemplate="footer" let-columns>
+      <ng-container *ngIf="rows.length > 0">
+          <tr *ngFor="let row of footerRows">
+              <td *ngFor="let col of row.cols" [attr.colspan]="(col.colspan) ? col.colspan : '1'" [ngClass]="col?.cssClass" [ngStyle]="col?.cssStyle">
+                {{findExpressionValue(col)}}
+              </td>
+          </tr>
+      </ng-container>     
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage" let-columns>
+      <tr class="text-center">
+        <td  [attr.colspan]="actions && actions.row && !to.readonly ? columns.length + 1 : columns.length">
+        {{ to.noDataText || 'No records found' }}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<ng-template #zcFormModal let-c="close" let-d="dismiss">
+  <!--
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{inlineFormOptions.title}}</h4>
+
+    </div>
+  -->
+  <div class="modal-body">
+    <zc-com-render type="form" [options]="inlineFormOptions" [showHideWidget]="true"></zc-com-render>
+  </div>
+</ng-template>

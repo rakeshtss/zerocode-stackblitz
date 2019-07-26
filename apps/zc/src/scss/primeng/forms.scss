@@ -1,0 +1,183 @@
+.ui-float-label > label {
+  left: 0.45em;
+}
+
+.ui-float-label > input:focus ~ label,
+.ui-float-label > input.ui-state-filled ~ label,
+.ui-float-label > .ui-inputwrapper-focus ~ label,
+.ui-float-label > .ui-inputwrapper-filled ~ label {
+  font-size: 14px;
+  left: 0em;
+}
+
+.ui-float-label textarea:focus ~ label,
+.ui-float-label textarea.ui-state-filled ~ label,
+.ui-float-label textarea:-webkit-autofill ~ label {
+  font-size: 14px;
+  left: 0em;
+}
+
+.ui-inputtext {
+  padding: 0.45em;
+
+  //color: $textfield-border;
+  transition: none;
+}
+
+.ui-state-default {
+  border: 1px solid $textfield-border;
+}
+
+.permission-checkbox {
+  .ui-chkbox {
+    border: 1px solid #ccc;
+    font-size: $fontSizeLarge;
+  }
+
+  .ui-chkbox-label {
+    cursor: pointer;
+    font-size: $fontSizeLarge;
+  }
+}
+
+.ui-widget {
+  font-family: 'Roboto', 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: 'Roboto', 'Trebuchet MS', Arial, Helvetica, sans-serif;
+  font-size: 1em;
+}
+
+.ui-widget :active {
+  outline: none;
+}
+
+.ui-widget-content {
+  border: 1px solid #d5d5d5;
+  background-color: #ffffff;
+  color: #222222;
+}
+
+.ui-widget-content a {
+  color: #222222;
+}
+
+.ui-widget-header {
+  border: 1px solid #d9d9d9;
+  background-color: #f6f7f9;
+  color: #1b1d1f;
+  font-weight: normal;
+}
+
+.ui-widget-header a {
+  color: #1b1d1f;
+}
+
+.ui-widget-overlay {
+  background-color: #666666;
+  opacity: 0.5;
+  filter: Alpha(Opacity = 50);
+}
+
+.ui-state-default {
+  border: 1px solid #d6d6d6;
+  background-color: #ffffff;
+  color: #555555;
+}
+
+.ui-state-default a {
+  color: #555555;
+}
+
+.ui-state-active {
+  border-color: #bebebe;
+  background-color: #d6d6d6;
+  color: #212121;
+}
+
+.ui-state-active a {
+  color: #212121;
+}
+
+.ui-state-highlight {
+  border-color: #156090;
+  background-color: #186ba0;
+  color: #ffffff;
+}
+
+.ui-state-highlight a {
+  color: #ffffff;
+}
+
+.ui-state-focus {
+  border-color: #c0c0c0;
+  background-color: #eeeeee;
+  color: #212121;
+}
+
+.ui-state-focus a {
+  color: #212121;
+}
+
+.ui-state-error {
+  border-color: #f44336;
+  background-color: #f5554a;
+  color: #cd0a0a;
+}
+
+.ui-state-error a {
+  color: #cd0a0a;
+}
+
+.ui-state-disabled,
+.ui-widget:disabled {
+  opacity: 0.35;
+  filter: Alpha(Opacity = 35);
+  background-image: none;
+  cursor: default !important;
+}
+
+.ui-state-disabled *,
+.ui-widget:disabled * {
+  cursor: default !important;
+}
+
+.ui-corner-all {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+// ui-dropdown
+.ui-dropdown .ui-dropdown-clear-icon {
+  color: #888888;
+}
+
+.ui-dropdown:not(.ui-state-disabled):hover {
+  border-color: #c0c0c0;
+  color: #212121;
+}
+
+.ui-dropdown:not(.ui-state-disabled):hover a {
+  color: #212121;
+}
+
+.ui-dropdown-panel
+  .ui-dropdown-item:not(.ui-state-highlight):not(.ui-state-disabled):hover {
+  border-color: #c0c0c0;
+  color: #212121;
+}
+
+.ui-dropdown-panel
+  .ui-dropdown-item:not(.ui-state-highlight):not(.ui-state-disabled):hover
+  a {
+  color: #212121;
+}
+.only-hours .ui-timepicker > .ui-minute-picker {
+  display: none;
+}

@@ -1,0 +1,7 @@
+<div class="qlana-stage-next-previous text-right">
+  <button class="btn btn-primary btn-sm" *ngIf="currentStageIndex!==0" (click)="previous()"><i class="icon-angle-left"></i></button>
+  <button  class="btn btn-primary btn-sm ml-2" *ngIf="currentStageIndex < stageList.length-1" (click)="next()"><i class="icon-angle-right"></i></button>
+</div>
+<div *ngIf="pageInfo">
+  <zc-page-render [options]="{ widgets: pageInfo }"></zc-page-render>
+</div>

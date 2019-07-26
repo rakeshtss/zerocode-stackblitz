@@ -1,0 +1,260 @@
+<!-- <h3>{{options.title || 'Grid'}}</h3> -->
+<div class="list-container" *ngIf="options.hiddenList !== true" [attr.id]="'table-'+options.id"
+  [ngClass]="options.cssClass">
+  <div class="row m-0 zc-table-header">
+    <div class="col table-header" *ngIf="options.title && options.properties.hideTitle !== true">
+      <h2 class="zc-data-list-title pl-2">{{ options.title }}</h2>
+    </div>
+    <div class="group-actions pr-2" *ngIf="options.actions && options.actions.group">
+      <zc-actions [selectedRows]="selectedRows" [actions]="options.actions" type="group" [id]="options.id"></zc-actions>
+    </div>
+  </div>
+  <div class="col-12 zc-table-form" *ngIf="inlineForm">
+    <zc-com-render type="form" [options]="inlineFormOptions" [showHideWidget]="true"></zc-com-render>
+  </div>
+  <div class="col-12 filter-position-top" *ngIf="
+    options.properties.filter.type === 'advanced' &&
+    options.properties.filter.position === 'top'
+  ">
+    <zc-data-list-filter [cols]="filterCols" [dt]="dt" [options]="options"></zc-data-list-filter>
+  </div>
+
+  <div class="row m-0 zc-table-body">
+    <div class="col-3 zc-table-filter-widget" *ngIf="
+      options.properties.filter.type === 'advanced' &&
+      options.properties.filter.position === 'left'
+    ">
+      <div class="zc-table-filter">
+        <zc-data-list-filter [cols]="filterCols" [dt]="dt" [options]="options"></zc-data-list-filter>
+      </div>
+    </div>
+    <div class="col zc-widget-data-list">
+      <!--
+      {{options.properties.pagination.displayFormat}} [scrollable]="isLazy"
+    -->
+      <p-table #dt [columns]="scrollableCols || cols" [value]="rows" [lazy]="isLazy || true"
+        (onRowSelect)="onRowSelect($event)"  (onLazyLoad)="getDataList($event)" [paginator]="paginator"
+        [paginatorPosition]="options.properties.pagination.position || 'bottom'"
+        [rows]="options.properties.pagination.size || 10" [totalRecords]="totalRecords"
+        [scrollHeight]="options.properties.pagination.scrollHeight || '500px'"
+        [virtualScroll]="options.properties.pagination.autoScroll"
+        [virtualRowHeight]="options.properties.pagination.virtualRowHeight || 64"
+        [responsive]="options.properties.shrinkToFit || true" [frozenColumns]="frozenCols"
+        [scrollable]="scrollable || options.properties.pagination.autoScroll" [frozenWidth]="frozenWidth"
+        [selectionMode]="selectionMode" sortMode="multiple" [(selection)]="selectedRows"
+        [tableStyleClass]="tableStyleClass">
+        <ng-template *ngIf="scrollable && frozenCols" pTemplate="colgroup" let-columns>
+          <colgroup>
+            <col *ngFor="let col of columns" [ngStyle]="{ width: col.width }" />
+          </colgroup>
+        </ng-template>
+        <ng-template pTemplate="header" *ngIf="options.properties.type === 'table'" let-columns>
+          <tr *ngIf="groupcHeaders.length === 0">
+            <th style="width: 2em" *ngIf="
+              options.properties.rowSelection &&
+              options.properties.rowSelection.display &&
+              options.properties.rowSelection.type === 'checkbox'
+            ">
+              <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <th *ngFor="let col of columns" ngbDropdown [ngStyle]="{ width: col.width }">
+              <ng-container *ngIf="!col.hideLabel">
+                {{ col.label }}
+                <i *ngIf="
+                  (col.filter &&
+                    options.properties.filter.type &&
+                    options.properties.filter.type === 'column') ||
+                  col.sort
+                " id="dropdownConfig" ngbDropdownToggle style="cursor: pointer;" class="icon-angle-down-1"></i>
+                <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                  <ul>
+                    <li *ngIf="col.sort">
+                      <button class="dropdown-item" [pSortableColumn]="col.sortByName || col.name">
+                        <p-sortIcon [field]="col.sortByName || col.name" ariaLabel="Activate to sort" order="1"
+                          ariaLabelDesc="Activate to sort in descending order"
+                          ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        Sort
+                      </button>
+                    </li>
+                    <div *ngIf="
+                      col.filter &&
+                      options.properties.filter.type &&
+                      options.properties.filter.type === 'column'
+                    ">
+                      <zc-data-list-filter filterType="column" [column]="col" [dt]="dt" [options]="options">
+                      </zc-data-list-filter>
+                    </div>
+                  </ul>
+                </div>
+              </ng-container>
+            </th>
+            <th class="zc-actions" [ngStyle]="{ width: options.actions.row.width }"
+              *ngIf="options.actions && options.actions.row && options.actions.row.items && options.actions.row.items.length > 0">
+              Actions
+            </th>
+          </tr>
+          <ng-container *ngIf="groupcHeaders.length > 0">
+            <tr *ngFor="let groupcHeader of groupcHeaders; let groupIndex = index">
+              <th style="width: 2em" [attr.rowspan]="options.properties.rowSelection.rowspan" *ngIf="
+                options.properties.rowSelection &&
+                options.properties.rowSelection.display &&
+                options.properties.rowSelection.type === 'checkbox' &&
+                groupIndex === 0
+              ">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+              </th>
+              <th *ngFor="let col of groupcHeader" ngbDropdown [attr.colspan]="col.colspan ? col.colspan : '1'"
+                [attr.rowspan]="col.rowspan ? col.rowspan : '1'" [attr.class]="col.cssClass ? col.cssClass : ''"
+                [ngStyle]="{ width: col.width }">
+                <ng-container *ngIf="!col.hideLabel">
+                  {{ col.label }}
+                  <ng-container *ngIf="
+                    (col.filter &&
+                      options.properties.filter.type === 'column') ||
+                    col.sort
+                  ">
+                    <i id="dropdownConfig" ngbDropdownToggle style="cursor: pointer;" class="icon-angle-down-1"></i>
+                    <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+                      <ul>
+                        <li *ngIf="col.sort">
+                          <button class="dropdown-item" [pSortableColumn]="col.name">
+                            <p-sortIcon [field]="col.name" ariaLabel="Activate to sort" order="1"
+                              ariaLabelDesc="Activate to sort in descending order"
+                              ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            Sort
+                          </button>
+                        </li>
+                        <div *ngIf="
+                          col.filter &&
+                          options.properties.filter.type &&
+                          options.properties.filter.type === 'column'
+                        ">
+                          <zc-data-list-filter filterType="column" [column]="col" [dt]="dt" [options]="options">
+                          </zc-data-list-filter>
+                        </div>
+                      </ul>
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </th>
+            </tr>
+          </ng-container>
+        </ng-template>
+        <ng-template *ngIf="options.properties.type === 'table'" pTemplate="body" let-row let-rowIndex="rowIndex"
+          let-columns="columns">
+          <tr [ngStyle]="getRowStyles(row, rowIndex)" [pSelectableRowDisabled]="!selectionMode"
+            [pSelectableRowIndex]="rowIndex" [pSelectableRow]="(selectionMode)?row:''" (mouseover)="row.hover = true"
+            (mouseleave)="row.hover = false">
+            <td style="width: 2em" *ngIf="
+              options.properties.rowSelection &&
+              options.properties.rowSelection.display &&
+              options.properties.rowSelection.type === 'checkbox'
+            ">
+              <p-tableCheckbox [value]="row"></p-tableCheckbox>
+            </td>
+            <ng-container *ngFor="let col of columns">
+              <td [ngStyle]="{ width: col.width }" *ngIf="row[col.name]?.visible !== false"
+                [attr.rowspan]="row[col.name]?.rowSpan || 1">
+                <!--
+                *ngIf="row[col]?.visible !==false"  [attr.rowspan]="rowGroupMetadata[rowIndex][col.name]['rowSpan'] || 0" [attr.rowspan]="row.rowSpan"
+              -->
+
+                <ng-container *ngTemplateOutlet="
+                  colIcons;
+                  context: { data: col.prefix, row: row }
+                "></ng-container>
+                <span *ngIf="!col.displayFormat">
+                  <a class="row-col-link" *ngIf="col.action" (click)="redirectPage(col, row)">
+                    <!--
+                    <zc-display-value-format [item]="row" [key]="col.name" [col]="col" [style]="col.displayStyle"
+                    [action]="col.action"></zc-display-value-format>
+                  -->
+                    <span zcFieldValueFormat [type]="col.type" [key]="col.name" [row]="row" formatType="row"
+                      [colProperties]="col"></span>
+                  </a>
+                  <span zcFieldValueFormat *ngIf="!col.action && !col.hideValue" [type]="col.type" [key]="col.name"
+                    formatType="row" [row]="row" [colProperties]="col"></span>
+                  <!--
+                  <zc-display-value-format *ngIf="!col.action && !col.hideValue" [item]="row" [key]="col.name" [col]="col"
+                  [style]="col.displayStyle" [action]="col.action"></zc-display-value-format>
+                -->
+                </span>
+                <ng-template *ngIf="col.displayFormat" dynamic-template [extraModules]="[myExtraModules]"
+                  [template]="col.displayFormat" [context]="{ item: row,index:rowIndex, zc: _zc,baseUrl:baseUrl }">
+                </ng-template>
+                <ng-container *ngTemplateOutlet="
+                  colIcons;
+                  context: { data: col.suffix, row: row }
+                "></ng-container>
+              </td>
+            </ng-container>
+            <td
+              *ngIf="options.actions && options.actions.row && options.actions.row.items && options.actions.row.items.length > 0">
+              <zc-actions [rowIndex]="rowIndex" [actions]="options.actions" type="row" [currentRow]="row" [id]="options.id"></zc-actions>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template *ngIf="options.properties.type === 'card'" pTemplate="body" let-row let-rowIndex="rowIndex"
+          let-columns="columns">
+          <div class="card" [ngClass]="options.properties.styling.row.cssClass"
+            [ngStyle]="options.properties.styling.row.cssStyle">
+            <ng-template dynamic-template [template]="options.properties.cardTemplate" [extraModules]="[myExtraModules]"
+              [context]="{ row: row, options: options, zc: _zc, baseUrl: baseUrl }"></ng-template>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-columns>
+          <!--
+          <div *ngIf="options.properties.type === 'card'">
+              {{ options.properties.noDataText || 'No records found' }}
+          </div>
+        -->
+          <tr class="text-center">
+            <td [attr.colspan]="
+              options.actions && options.actions.row && options.actions.row.items && options.actions.row.items.length > 0
+                ? columns.length + 1
+                : columns.length
+            ">
+              {{ options.properties.noDataText || 'No records found' }}
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft" let-state>
+          <a class="btn-sm icon-refresh-1" title="Reload" (click)="reload()"></a>
+        </ng-template>
+        <ng-template pTemplate="paginatorright" let-state *ngIf="options.properties.pagination.displayFormat">
+          <ng-template dynamic-template [template]="options.properties.pagination.displayFormat" [context]="{
+            totalRecords: totalRecords,
+            page: state.page,
+            rows: state.rows,
+            totalPages: totalPages
+          }"></ng-template>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="col-3 zc-table-filter-widget" *ngIf="
+      options.properties.filter.type &&
+      options.properties.filter.type === 'advanced' &&
+      options.properties.filter.position === 'right'
+    ">
+      <div class="zc-table-filter">
+        <zc-data-list-filter [cols]="cols" [dt]="dt" [options]="options"></zc-data-list-filter>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #colIcons let-data="data" let-row="row">
+  <ng-container *ngFor="let icon of data">
+    <span zcColicons [row]="row" [icon]="icon"></span>
+  </ng-container>
+</ng-template>
+<ng-template #zcFormModal let-c="close" let-d="dismiss">
+  <!--
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{inlineFormOptions.title}}</h4>
+
+    </div>
+  -->
+  <div class="modal-body">
+    <zc-com-render type="form" [options]="inlineFormOptions" [showHideWidget]="true"></zc-com-render>
+  </div>
+</ng-template>

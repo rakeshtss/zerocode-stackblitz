@@ -1,0 +1,55 @@
+.bg-img {
+  background-image: url(../images/background-img.png);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 440px;
+}
+
+.bg-img h2 {
+  font-size: 27px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.bg-img p {
+  font-size: 15px;
+  color: #080707;
+  padding: 10px;
+}
+
+.bg-img .row1 {
+  padding: 60px 0px 100px 0px;
+}
+
+.bg-img .row1 .card1:after {
+  background-image: url(../images/shadow.png);
+  background-position: center bottom;
+  background-size: cover;
+  content: '';
+  display: block;
+  height: 50px;
+  position: absolute;
+  width: 800px;
+  margin-top: 30px;
+}
+
+.bg-img .row1 .card1 {
+  background: #fff;
+  width: 65%;
+  height: auto;
+  margin: 0 auto;
+  display: table;
+  padding: 30px;
+  margin-bottom: 50px;
+}
+.bg-img .row1 .card1 h4 {
+  font-size: 18px;
+  color: #000;
+  padding-bottom: 20px;
+}
+.bg-img .row1 .card1 .glyphicon-search:before {
+  content: '\e003';
+  color: #b5b5b5;
+}

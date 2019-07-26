@@ -1,0 +1,18 @@
+@import '../../app/config/theme.scss';
+.eleWidget-acc {
+  &.ui-accordion {
+    background-color: #fdfdfd;
+    padding: $padding10;
+    .ui-accordion-header {
+      background-color: #fdfdfd;
+      border: $borderNone;
+      &.ui-state-active {
+        border-top: none !important;
+      }
+    }
+    .ui-accordion-content {
+      background-color: #fdfdfd;
+      padding-top: $padding0;
+    }
+  }
+}

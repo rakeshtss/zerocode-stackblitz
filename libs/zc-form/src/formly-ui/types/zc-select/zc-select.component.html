@@ -1,0 +1,68 @@
+<!--
+  <select *ngIf="to.multiple; else singleSelect" class="form-control" multiple [class.custom-select]="to.customSelect"
+    [formControl]="formControl" [class.is-invalid]="showError" [formlyAttributes]="field">
+    <ng-container *ngFor="let item of to.options | formlySelectOptions:field | async">
+      <optgroup *ngIf="item.group" label="{{item.label}}">
+        <option *ngFor="let child of item.group" [ngValue]="child.value" [disabled]="child.disabled">
+          {{ child.label }}
+        </option>
+      </optgroup>
+      <option *ngIf="!item.group" [ngValue]="item.value" [disabled]="item.disabled">{{ item.label }}</option>
+    </ng-container>
+  </select>
+
+  <ng-template #singleSelect>
+    <select class="form-control" [formControl]="formControl" [class.custom-select]="to.customSelect" [class.is-invalid]="showError"
+      [formlyAttributes]="field">
+      <option *ngIf="to.placeholder" [ngValue]="null">{{ to.placeholder }}</option>
+      <ng-container *ngFor="let item of to.options | formlySelectOptions:field | async">
+        <optgroup *ngIf="item.group" label="{{item.label}}">
+          <option *ngFor="let child of item.group" [ngValue]="child.value" [disabled]="child.disabled">
+            {{ child.label }}
+          </option>
+        </optgroup>
+        <option *ngIf="!item.group" [ngValue]="item.value" [disabled]="item.disabled">{{ item.label }}</option>
+      </ng-container>
+    </select>
+  </ng-template>
+-->
+<label *ngIf="to.mode == 'view'; else: fieldTemp">
+  <span *ngIf="!to.displayFormat" zcFieldValueFormat type="select" [properties]="to" [value]="formControl.value"></span>
+  <ng-template *ngIf="to.displayFormat" dynamic-template [template]="to.displayFormat"
+    [context]="{ model: model,value:formControl.value }"></ng-template>
+</label>
+<ng-template #fieldTemp>
+  <div class="select-field" [class.readonly]="to.readonly">
+    <p-dropdown *ngIf="!to.multiple"  (onFocus)="focus($event)" (onShow)="show($event)"
+      (onClick)="click($event)" [class.ng-dirty]="showError" [style]="{ width: '100%' }" [placeholder]="to.placeholder"
+      appendTo="body" optionLabel="name" dataKey="uid" [inputId]="field.key + '_' + dataKey" [options]="to.options"
+      [filter]="to.search" [group]="to.group" [readonly]="to.readonly"
+      [dropdownIcon]="to.dropdownIcon || 'icon-angle-down'" [formControl]="formControl" [formlyAttributes]="field"
+      [showClear]="!to.readonly && !to.required">
+      <ng-template let-item pTemplate="selectedItem" *ngIf="to.selectedTemplate">
+        <div dynamic-template [context]="{ item: item }" [template]="to.selectedTemplate"></div>
+      </ng-template>
+      <ng-template let-item pTemplate="item" *ngIf="to.itemTemplate">
+        <div class="ui-helper-clearfix">
+          <div dynamic-template [context]="{ item: item }" [template]="to.itemTemplate"></div>
+        </div>
+      </ng-template>
+    </p-dropdown>
+    <p-multiSelect *ngIf="to.multiple" (onChange)="multiSelectChange($event)" [class.ng-dirty]="showError"
+      [style]="{ width: '100%' }" [defaultLabel]="to.placeholder" appendTo="body" [inputId]="field.key + '_' + dataKey"
+      [dataKey]="dataKey" optionLabel="name" [options]="to.options"
+      [filter]="to.search === undefined ? true : to.search" [dropdownIcon]="to.dropdownIcon || 'icon-angle-down'"
+      [formControl]="formControl" [formlyAttributes]="field" [readonly]="to.readonly">
+      <ng-template let-value pTemplate="selectedItems" *ngIf="to.selectedTemplate">
+        <div *ngFor="let val of value" class="ui-multiselected-item-token ui-corner-all">
+          <div dynamic-template [context]="{ props: to, item: val }" [template]="to.selectedTemplate"></div>
+        </div>
+      </ng-template>
+      <ng-template let-item pTemplate="item" *ngIf="to.itemTemplate">
+        <div class="ui-helper-clearfix">
+          <div dynamic-template [context]="{ props: to, item: item }" [template]="to.itemTemplate"></div>
+        </div>
+      </ng-template>
+    </p-multiSelect>
+  </div>
+</ng-template>

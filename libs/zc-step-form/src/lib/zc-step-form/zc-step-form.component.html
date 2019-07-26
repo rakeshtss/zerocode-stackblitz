@@ -1,0 +1,75 @@
+<form [formGroup]="form" [ngSwitch]="options.properties.displayStyle">
+  <mat-vertical-stepper *ngSwitchCase="'vertical'" [linear]="options.properties.isLinear" #stepper>
+    <mat-step *ngFor="let tab of options.steps; let index = index; let last = last">
+      <ng-template matStepLabel>{{ tab.title }}
+        <div class="tab-description" *ngIf="tab.description">
+          {{ tab.description }}
+        </div>
+      </ng-template>
+      <div class="col-lg-12">
+        <zc-form [options]="{
+            fields: tab.fields,
+            id: options.id + '_step_form_' + index,
+            mode: 'view'
+          }" [formlyOptions]="formlyOptions[index]" [form]="form.at(index)" [model]="model">
+        </zc-form>
+      </div>
+      <div class="col-12" *ngIf="options.properties.hideNavigator !== true">
+        <button *ngIf="index !== 0" class="btn btn-primary" type="button" (click)="previous()">
+          Back
+        </button>
+        <button *ngIf="!last" class="btn btn-primary" type="button" (click)="next()">
+          Next
+        </button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+  <mat-tab-group *ngSwitchCase="'tab'" [selectedIndex]="selectedTabIndex"
+    (selectedIndexChange)="selectedTabIndex = $event">
+    <mat-tab *ngFor="let step of steps; let index = index; let last = last" [label]="step.title"
+      [disabled]="index !== 0 && step.disabled">
+      <!-- <ng-template matTabContent> -->
+      <div class="col-lg-12 tab-container">
+        <zc-form [options]="{
+            fields: step.fields,
+            id: options.id + '_step_form_' + step.id
+          }" [formlyOptions]="formlyOptions[step.id]" [form]="form.at(step.id)" [model]="model">
+        </zc-form>
+      </div>
+      <!-- </ng-template> -->
+    </mat-tab>
+  </mat-tab-group>
+  <mat-horizontal-stepper *ngSwitchDefault [linear]="options.properties.isLinear" #stepper>
+    <ng-container *ngIf="showForm">
+      <ng-container *ngFor="let step of steps; let index = index; let last = last">
+        <mat-step [completed]="false" [stepControl]="form.at(step.id)">
+          <ng-template matStepLabel
+            >
+            <span class="tab-title" *ngIf="step.title">{{ step.title }}</span>
+            <span class="tab-icon" *ngIf="step.icon" [ngClass]="step.icon" matTooltip="{{step.title}}" matTooltipPosition="right"></span>
+
+            <div class="tab-description" *ngIf="step.description">
+              {{ step.description }}
+            </div>
+          </ng-template>
+          <div class="col-lg-12">
+            <zc-form [options]="{
+                fields: step.fields,
+                id: options.id + '_step_form_' + step.id,
+                mode: formMode
+              }" [formlyOptions]="formlyOptions[step.id]" [form]="form.at(step.id)" [model]="model">
+            </zc-form>
+          </div>
+          <div class="col-12" *ngIf="options.properties.hideNavigator !== true">
+            <button *ngIf="index !== 0" class="btn btn-primary" type="button" (click)="previous()">
+              Back
+            </button>
+            <button *ngIf="!last" class="btn btn-primary" type="button" (click)="next()">
+              Next
+            </button>
+          </div>
+        </mat-step>
+      </ng-container>
+    </ng-container>
+  </mat-horizontal-stepper>
+</form>

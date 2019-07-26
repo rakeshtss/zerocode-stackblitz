@@ -1,0 +1,19 @@
+<label *ngIf="to.mode == 'view'; else: fieldTemp">
+  <span zcFieldValueFormat [type]="to.type" [value]="formControl.value"></span>
+</label>
+<ng-template #fieldTemp>
+  <textarea
+    [formControl]="formControl"
+    [formControl]="formControl"
+    [id]="field.key"
+    [cols]="to.col"
+    [rows]="to.row"
+    [maxLength]="to.maxLength || 1000"
+    [minLength]="to.minLength || 0"
+    class="form-control"
+    [readonly]="to.readonly"
+    [class.is-invalid]="showError"
+    [formlyAttributes]="field"
+  >
+  </textarea>
+</ng-template>

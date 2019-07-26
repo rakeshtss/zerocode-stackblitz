@@ -1,0 +1,24 @@
+.setting {
+  display: none;
+  padding: 2px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: red;
+  i {
+    margin-left: 5px;
+  }
+}
+.trash {
+  padding: 0px;
+  position: absolute;
+  right: 20;
+  top: 0;
+}
+.block {
+  position: relative;
+  display: block;
+}
+.row {
+  display: flex !important;
+}

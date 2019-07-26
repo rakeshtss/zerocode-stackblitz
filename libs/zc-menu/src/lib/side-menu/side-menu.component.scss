@@ -1,0 +1,121 @@
+ul.zc-menu {
+  padding-left: 0px;
+
+  /* height: calc(100vh - 105px); */
+  height: calc(100vh - 170px);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  li.nav-item {
+    border-bottom: 1px solid #3480be;
+    list-style-type: none;
+    .dp-arrow {
+      position: absolute;
+      transition: all 0.3s;
+      right: 7px;
+    }
+
+    a.nav-link {
+      color: #fff;
+      display: block;
+      padding: 0px 0px 0px 0px;
+      position: relative;
+      height: 45px;
+      line-height: 45px;
+      outline: none !important;
+      &.active {
+        color: #10b1dc;
+        background-color: #26568b;
+      }
+
+      i {
+        position: absolute;
+        font-size: 21px;
+        height: 100%;
+        line-height: 45px;
+        text-align: center;
+        width: 60px;
+        left: 0;
+        top: 0;
+      }
+
+      .nav-link-text {
+        margin-left: 60px;
+        display: block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        padding-right: 20px;
+      }
+
+      &:hover {
+        background-color: #184475;
+      }
+    }
+
+    &:hover {
+      background-color: #184475;
+    }
+
+    .nav-dropdown-items {
+      /* display: none; */
+      background-color: #26568b;
+      transition: max-height 0.5s ease;
+      max-height: 0px;
+      -webkit-transition: max-height 0.5s ease;
+      -moz-transition: max-height 0.5s ease;
+      -o-transition: max-height 0.5s ease;
+      transition: max-height 0.5s ease;
+      opacity: 0;
+
+      .nav-item {
+        height: 0px;
+        transition: height 0.5s ease;
+      }
+    }
+
+    &.nav-dropdown {
+      .nav-dropdown-toggle {
+        cursor: pointer;
+      }
+
+      &.open {
+        background-color: #26568b;
+
+        .dp-arrow {
+          transform: rotate(90deg);
+        }
+
+        .nav-dropdown-items {
+          /* display: block; */
+          background-color: #26568b;
+          transition: max-height 0.5s ease;
+          max-height: 500px;
+          -webkit-transition: max-height 0.5s ease;
+          -moz-transition: max-height 0.5s ease;
+          -o-transition: max-height 0.5s ease;
+          transition: max-height 0.5s ease;
+          opacity: 1;
+
+          .nav-item {
+            height: 45px;
+            transition: height 0.5s ease;
+            border-bottom: none;
+
+            .nav-link {
+              span {
+                padding-left: 20px;
+                display: inline-block;
+              }
+
+              &:hover {
+                background-color: #0f558f;
+                border-bottom: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

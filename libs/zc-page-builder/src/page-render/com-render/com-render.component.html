@@ -1,0 +1,13 @@
+<div *ngIf="showLoader">
+  <!-- <img width="80" height="50" [src]="appConfig.settings.loaderUrl" /> -->
+  Loading....
+</div>
+<ng-container
+  *ngIf="template"
+  dynamic-template
+  (templateReady)="templateReady($event, widgetId)"
+  [context]="{ options: options }"
+  [template]="template"
+  [lazyModules]="lazyModules"
+>
+</ng-container>

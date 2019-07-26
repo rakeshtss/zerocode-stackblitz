@@ -1,0 +1,40 @@
+<!-- <ng-container *ngFor="let block of pageBlocks; let bIndx = index">
+  <zc-block-tree-node
+    class="block"
+    [ngClass]="block.definition?.style"
+    [attr.id]="block.definition?.id"
+    [ngStyle]="block.definition?.inlineStyle"
+    *ngIf="block.info.type == 'block'"
+    [pageBlocks]="block.definition.widgets"
+  ></zc-block-tree-node>
+  <zc-com-render
+    *ngIf="block.info.type != 'block'"
+    [options]="block.definition"
+    [type]="block.info.type"
+  >
+  </zc-com-render>
+</ng-container> -->
+<ng-template #nodeTemplateRef let-widget="widget" let-bIndx="bIndx">
+
+  <ng-container *ngIf="widget.info.type ==='block'">
+    <div  [attr.id]="widget.definition?.id" class="block"
+      [ngStyle]="widget.definition?.inlineStyle" [ngClass]="widget.definition.style">
+      <ng-container *ngIf="widget.definition.widgets">
+        <ng-template ngFor let-w [ngForOf]="widget.definition.widgets" let-b="index">
+          <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ widget: w,bIndx:b }">
+          </ng-template>
+        </ng-template>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="widget.info.type  !=='block'">
+    <zc-com-render *ngIf="widget.info.type != 'block'" [options]="widget.definition" [type]="widget.info.type">
+    </zc-com-render>
+  </ng-container>
+</ng-template>
+
+
+<ng-container *ngFor="let widget of pageBlocks">
+  <ng-template [ngTemplateOutlet]="nodeTemplateRef" [ngTemplateOutletContext]="{ widget:widget,bIndx:i }">
+  </ng-template>
+</ng-container>

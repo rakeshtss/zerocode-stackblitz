@@ -1,0 +1,6 @@
+<div class="p-contain" [ngClass]="currentPageName">
+  <zc-page-render
+    *ngIf="pageInfo && pageInfo.definition"
+    [options]="{ widgets: pageInfo.definition.widgets }"
+  ></zc-page-render>
+</div>

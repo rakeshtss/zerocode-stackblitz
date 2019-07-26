@@ -1,0 +1,17 @@
+.table-group-action {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.browseFileBtn {
+  input[type='file'] {
+    display: none;
+  }
+
+  padding: 10px 16px;
+  background: #c1c1c5;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 5px;
+}

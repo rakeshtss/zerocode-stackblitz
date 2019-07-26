@@ -1,0 +1,98 @@
+<div class="kanban-widget-header">
+  <div>
+    <input
+      type="search"
+      class="form-control"
+      name="globalFilter"
+      [(ngModel)]="globalFilter"
+      (keyup)="loadmore('search')"
+      placeholder="Search"
+    />
+  </div>
+</div>
+<div class="row kanban-widget" *ngIf="showGrid">
+  <div
+    class="ui-g-nopad col kanban-column"
+    *ngFor="let grid of kanbanGrids; let inxG = index"
+  >
+    <div class="drop-column" pDroppable="items" (onDrop)="drop($event, inxG)">
+      <h4>
+        <span>{{ grid.name }}</span>
+      </h4>
+      <div
+        class="drag-column search-results"
+        infiniteScroll
+        (scrolled)="onScroll(grid)"
+        [scrollWindow]="false"
+      >
+        <div
+          *ngIf="grid.items.length === 0"
+          class="ui-helper-clearfix drop-box"
+        >
+          <span>No record found</span>
+        </div>
+        <ul class="kanban-column-list" *ngIf="grid.items.length !== 0">
+          <li
+            *ngFor="let item of grid.items; let inxT = index"
+            class="ui-helper-clearfix solid"
+            [ngClass]="{ 'ui-highlight-item': draggedItem }"
+            pDraggable="items"
+            (onDragStart)="dragStart($event, item, inxG, inxT)"
+            (onDragEnd)="dragEnd($event)"
+            (click)="redirectPage(item.uid)"
+          >
+            <div
+              class="card"
+              *ngIf="options.properties.cardTemplate"
+              [ngClass]="options.properties.styling.row.cssClass"
+              [ngStyle]="options.properties.styling.row.cssStyle"
+            >
+              <ng-template
+                dynamic-template
+                [template]="options.properties.cardTemplate"
+                [context]="{ row: item }"
+              ></ng-template>
+            </div>
+            <div *ngIf="!options.properties.cardTemplate">
+              <ng-container *ngFor="let col of options.cols">
+                <div class="column-info profile" [ngClass]="col.style">
+                  <div class="profile-info">
+                    <label>{{ col.label }}</label>
+                    <a
+                      class="row-col-link"
+                      *ngIf="
+                        options?.rowSelect &&
+                        col.field == options.rowSelect.column
+                      "
+                    >
+                      <zc-display-value-format
+                        [item]="item"
+                        [key]="col.name"
+                        [col]="col"
+                        [style]="col.displayStyle"
+                      ></zc-display-value-format>
+                    </a>
+                    <span
+                      class="row-col-value"
+                      *ngIf="
+                        !options?.rowSelect ||
+                        col.field != options.rowSelect.column
+                      "
+                    >
+                      <zc-display-value-format
+                        [item]="item"
+                        [key]="col.name"
+                        [col]="col"
+                        [style]="col.displayStyle"
+                      ></zc-display-value-format>
+                    </span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

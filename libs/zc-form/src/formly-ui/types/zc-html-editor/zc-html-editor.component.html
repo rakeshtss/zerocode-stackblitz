@@ -1,0 +1,32 @@
+<!--
+  <p-editor [formControl]="formControl" styleClass="zc-chips" [formlyAttributes]="field" [style]="{'height':'320px'}"></p-editor>
+-->
+
+<div class="cutom-editor">
+  <i
+    class="fa fa-code"
+    aria-hidden="true"
+    (click)="toggleCode()"
+    [ngClass]="showCode ? 'active' : ''"
+  ></i>
+  <!--
+    <input type="hidden" [formControl]="formControl" [(ngModel)]="editorData">
+  -->
+  <textarea
+    pInputTextarea
+    *ngIf="showCode"
+    [formControl]="formControl"
+    [(ngModel)]="editorData"
+    [placeholder]="'Enter code here...'"
+    [rows]="rows"
+    style="width: 100%;"
+  ></textarea>
+  <app-ngx-editor
+    *ngIf="!showCode"
+    [formControl]="formControl"
+    [placeholder]="'Design template here...'"
+    [minHeight]="'200px'"
+    [spellcheck]="true"
+    [(ngModel)]="editorData"
+  ></app-ngx-editor>
+</div>

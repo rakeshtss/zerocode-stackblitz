@@ -1,0 +1,162 @@
+.drop-box {
+  border: 1px solid #ccc;
+  margin: 5px;
+  padding: 5px;
+  background-color: #edf3f2;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 84;
+  text-align: center;
+  justify-content: center;
+}
+.kanban-widget-header {
+  margin-bottom: 10px;
+}
+.kanban-widget {
+  flex-wrap: initial;
+  overflow-x: auto;
+  .kanban-column {
+    padding-right: 10px;
+    min-width: 275px;
+    max-width: 275px;
+    .drop-column {
+      background-color: #f5f5f5;
+      border: 1px solid #eaeaea;
+      > h4 {
+        border-bottom: 1px solid #eaeaea;
+        padding: 10px 5px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .drag-column {
+        padding: 8px;
+        height: calc(100vh - 350px);
+        overflow-y: auto;
+        .drop-box {
+          border: 1px solid #ccc;
+          padding: 5px;
+          background-color: #edf3f2;
+          border-radius: 6px;
+          cursor: pointer;
+          text-align: center;
+          display: flex;
+          min-height: 100vh;
+          margin: 0;
+          align-items: center;
+        }
+        .kanban-column-list {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          font-size: 14px;
+          li.solid {
+            border: 1px solid #ccc;
+            margin-bottom: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            .profile {
+              display: flex;
+              align-items: center;
+              .profile-image {
+                padding: 5px;
+              }
+              .profile-info {
+                display: flex;
+                flex-direction: column;
+                padding-left: 5px;
+                label {
+                  color: #6c757d;
+                }
+                .row-col-link {
+                  color: #0072bc;
+                  font-weight: 600;
+                  font-size: 14px;
+                  word-break: break-word;
+                }
+                .row-col-value {
+                  color: #000;
+                  font-size: 12px;
+                }
+              }
+            }
+            .status {
+              color: #ffffff;
+              font-size: 10px;
+              span {
+                padding: 0 10px;
+                border-radius: 5px;
+                margin: 5px 0;
+                &.high {
+                  background-color: #ff0000;
+                }
+                &.medium {
+                  background-color: #0072bc;
+                }
+                &.low {
+                  background-color: #00a651;
+                }
+              }
+            }
+            .unique-code {
+              margin: 5px 0;
+            }
+            .display-image {
+              position: relative;
+              border: 1px solid #ccc;
+              span {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+              }
+            }
+            .column-info {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              justify-content: space-between;
+              font-size: 12px;
+              padding: 5px;
+              span {
+                display: flex;
+                align-items: center;
+                i {
+                  font-size: 18px;
+                  padding-right: 3px;
+                }
+              }
+            }
+            &:hover {
+              border-color: #247da5;
+              background-color: #e8ecee;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.new-stage {
+  display: flex;
+  flex-direction: column;
+}
+.load-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  button {
+    align-items: center;
+    display: flex;
+    i {
+      padding-right: 10px;
+    }
+  }
+}
+.search-results {
+  height: calc(100vh - 350px);
+  overflow: scroll;
+}

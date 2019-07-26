@@ -1,0 +1,18 @@
+.ui-widget.ui-button,
+.ui-button {
+  border: 1px solid $primary;
+  color: #ffffff;
+  background: $primary;
+  &:hover {
+    border: 1px solid $primaryHover;
+    background: $primaryHover;
+  }
+}
+.ui-button-text-only .ui-button-text {
+  padding: 0.45em 1em;
+}
+.ui-chkbox-box.ui-state-active,
+.ui-radiobutton-box.ui-state-active {
+  border: 1px solid $primary;
+  background: $primary;
+}

@@ -1,0 +1,264 @@
+<!-- <div class="top-header hidden-sm hidden-xs">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8">
+        <div class="social-top">
+          <ul class="top-social">
+            <li><a href="javascript:;">Skip to Navigation</a></li>
+            <li><a href="javascript:;">Skip to Content</a></li>
+            <li><a href="javascript:;">A-</a></li>
+            <li><a href="javascript:;">A</a></li>
+            <li><a href="javascript:;">A+</a></li>
+            <li class="black-css"><a href="javascript:;">A</a></li>
+            <li class="white-css"><a href="javascript:;">A</a></li>
+            <li>
+              <select class="form-control">
+                <option>English</option>
+                <option>Hindi</option>
+                <option>Marathi</option>
+              </select>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-4">
+        <div class="pull-right" style="display:flex;">
+          <div class="top-phone mr10">
+            <input type="search" id="Search" name="q" placeholder="Search the site..." class="form-control" />
+          </div>
+          <a *ngIf="!ly.userDetails?.name"
+            style="background: #fff;color: #000;border-radius: 5px;padding: 10px 10px; text-decoration:none;margin-left: 15px;"
+            href="#/zcbase/account/login">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="head-color">
+  <div class="container">
+    <div class="header-middle">
+      <div class="col-md-1 col-sm-1 filmcity-logo">
+        <img src="assets/themes/mahait/images/Filmcitylogo.svg" alt="Film City Logo" />
+      </div>
+      <div class="col-md-10 col-sm-10">
+        <p class="maharashtra_film_stage">
+          MAHARASHTRA FILM, STAGE & CULTURAL DEVELOPMENT CORPORATION LIMITED
+          <br /><small style="font-weight:normal">(A Government of Maharashtra Undertaking)</small>
+        </p>
+
+        <p></p>
+      </div>
+
+      <div class="col-md-1 col-sm-1 maharashtra-logo">
+        <img src="assets/themes/mahait/images/Seal_of_Maharashtra.png" alt="Maharashtra Logo" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Start Header Area -->
+<header class="clearfix maha-header" id="header">
+  <nav class="navbar navbar-default" id="myHeader navbar">
+    <div class="container">
+      <!--
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+      -->
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="assets/mahait/html/index.html" class="">Home</a>
+          </li>
+          <li class="drop">
+            <a>About Us <i class="fa fa-sort-down"></i></a>
+            <ul class="drop-down">
+              <!--
+                <li><a href="assets/mahait/html/history.html" >History</a></li>
+                <li><a href="assets/mahait/html/Management-Filmcity.html" >Management</a></li>
+                <li><a href="assets/mahait/html/Single-Window-Facilitation-Cell.html" >Single Window Facilitation Cell (SWFC)</a></li>
+                <li><a href="assets/mahait/html/Clients.html" >Clients</a></li>
+              -->
+
+              <li>
+                <a href="assets/mahait/html/maharashtra-film-cell.html">Maharashtra Film Cell (MFC)</a>
+              </li>
+              <li>
+                <a href="assets/mahait/html/Management-Filmcity.html">Management</a>
+              </li>
+              <li>
+                <a href="assets/mahait/html/Nodal-Agency.html">Nodal Agency</a>
+              </li>
+              <li>
+                <a href="assets/mahait/html/Services.html">Services</a>
+              </li>
+            </ul>
+          </li>
+
+          <!--
+            <li class="drop"><a href="#">Services <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <li><a href="assets/mahait/html/Facilities_at_Filmcity.html" >Facilities at Filmcity</a></li>
+                <li><a href="#">Concession & Subsidies by State Government </a></li>
+                <li><a href="#">Application for Subsidy</a></li>
+              </ul>
+            </li>
+          -->
+          <!--
+            <li class="drop"><a href="#">Locations <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <li><a href="assets/mahait/html/Location_Gallery.html" >Location Gallery</a></li>
+                <li><a href="assets/mahait/html/Location_Gallery.html" >View Location Availability</a></li>
+              </ul>
+            </li>
+          -->
+          <li class="drop">
+            <a href="javascript:;">Locations <i class="fa fa-sort-down"></i></a>
+            <ul class="drop-down">
+              <li>
+                <a href="/#/swfc/view-location-description/view-location-description">Location Gallery</a>
+              </li>
+              <li>
+                <a href="/#/swfc/view-fixed-locations/fixed-locations-avalability">View Location Availability</a>
+              </li>
+            </ul>
+          </li>
+          <li><a href="javascript:;">Filmcity Booking</a></li>
+
+          <li class="drop">
+            <a href="javascript:;">Shooting Permission <i class="fa fa-sort-down"></i></a>
+            <ul class="drop-down">
+              <!-- <li><a href="#">Third Party Verification</a></li> -->
+              <li>
+                <a href="assets/mahait/html/How_to_Apply.html">How to Apply</a>
+              </li>
+              <li>
+                <a href="/#/swfc/indicative-rate-chart/indicative-rate-chart-list">Rate Chart</a>
+              </li>
+              <!-- <li>
+                <a href="/#/swfc/caf/create-new">Apply Now</a>
+              </li> -->
+              <li *ngIf="ly.userDetails.role?.value === 'production_house'"><a href="/#/swfc/caf/create-new">Apply Now</a></li>
+                <li *ngIf="ly.userDetails.role?.value !== 'production_house'"><a href="/#/swfc/caf/create-caf-individual">Apply Now</a></li>
+              <li><a href="javascript:;">Check Status</a></li>
+              <li>
+                <a href="/#/swfc/request-for-location/request-for-location">Request for Location</a>
+              </li>
+              <li><a href="/#/swfc/third-party-verification/third-party-verification">Third Party Verification</a></li>
+            </ul>
+          </li>
+          <li><a href="/#/">Dashboard</a></li>
+          <li *ngIf="!ly.userDetails || !ly.userDetails.role || !ly.userDetails.role.value || !ly.userDetails.role.value"><a href="javascript:;">Grievances</a></li>
+          <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'department_user'"><a href="/#/swfc/grievance/grievance-dept">Grievances</a></li>
+          <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'mfscdc_admin'"><a href="/#/swfc/grievance/grievance-mfscdc">Grievances</a></li>
+          <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'applicant'"><a href="/#/swfc/grievance/grievance-dashboard">Grievances</a></li>
+          <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'production_house'"><a href="/#/swfc/grievance/grievance-dashboard">Grievances</a></li>
+          <li>
+            <a href="assets/mahait/html/download.html">Downloads</a>
+          </li>
+          <!--
+            <li class="drop"><a href="#">Downloads <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <li><a href="#">FAQs</a></li>
+                <li class="dropdown-submenu">
+                  <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Reports <i
+                      class="fa fa-sort-down"></i></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Annual Reports</a></li>
+                    <li><a href="#">MoA</a></li>
+                    <li><a href="#">Other Reports</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Policy/ Circular/ GR/ Incentives/ CSR</a></li>
+                <li><a href="#">Database (Production House List; Equipment's’ Provider List)</a></li>
+                <li><a href="#">RTI</a></li>
+              </ul>
+            </li>
+          -->
+          <!--
+            <li><a href="assets/mahait/html/Tenders.html" >Tenders</a></li>
+          -->
+
+          <!--
+            <li class="drop"><a href="#">Contact Us <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <li><a href="assets/mahait/html/MFSCDC.html" >MFSCDC</a></li>
+                <li><a href="assets/mahait/html/SWFC.html" >SWFC</a></li>
+                <li><a href="assets/mahait/html/Stakeholder_Departments.html" >Stakeholder Departments</a>
+                </li>
+              </ul>
+            </li>
+          -->
+
+          <li class="drop">
+            <a href="javascript:;">Contact Us <i class="fa fa-sort-down"></i></a>
+            <ul class="drop-down">
+              <!-- <li><a href="MFSCDC.html">MFSCDC</a></li> -->
+              <li>
+                <a href="assets/mahait/html/MFC.html">Maharashtra Film Cell</a>
+              </li>
+              <li>
+                <a href="assets/mahait/html/Stakeholder_Departments.html">Stakeholder Departments</a>
+              </li>
+            </ul>
+          </li>
+          <!-- {{ly.userDetails | json}} -->
+          <li *ngIf="ly.userDetails && ly.userDetails.name" class="user-details">
+            <a class="profile-anchor" href="/#/">
+              <span class="welcome-user icon-users"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- <div class="back-groud-image"></div> -->
+<div class="login-container">
+  <div class="log container">
+    <router-outlet></router-outlet>
+    <div class="app-links" *ngIf="ly.appList && ly.appList.length>1">
+      <ul class="nav">
+        <li class="nav-item" *ngFor="let app of ly.appList">
+          <a class="nav-link active" [routerLink]="[ '/'+app.code]">{{app.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<footer class="clearfix">
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>© 2019 Film City Mumbai All Rights Reserved.</p>
+          <div class="flex-display">
+            <img src="assets/themes/mahait/images/footer-logo.png" />
+            <div>
+              <p>This site is developed & managed by</p>
+              <p class="text-weight">
+                Maharashtra Information Technology Corporation
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-right">
+          <ul>
+            <li class="right-border">Faq's</li>
+
+            <li class="right-border">Privacy Policy</li>
+
+            <li class="right-border">Privacy Policy</li>
+
+            <li>Contact Us</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>

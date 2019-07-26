@@ -1,0 +1,32 @@
+<ng-container [ngSwitch]="to.captchaType">
+
+  <ng-container *ngSwitchCase="'google'">
+    <p-captcha [siteKey]="appConfig.settings.captchaKey" (onResponse)="showResponse($event)"
+      (onExpire)="onExpire($event)"></p-captcha>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <div style="max-width: 80%; margin: 0 auto;">
+      <div class="captcha-icon"
+        style="display: flex;justify-content: space-between;align-items: center;margin-bottom: 10px;border: 1px solid #ccc;border-radius: 5px;">
+        <img *ngIf="captchaImageUrl!=''" [src]="captchaImageUrl" alt="" style="max-width: 200px">
+        <a class="icon-refresh refresh-captcha" matTooltip="Refresh" matTooltipPosition="above"
+          (click)="getCaptchaImage()"></a>
+      </div>
+      <div>
+        Type the text displayed above
+        <!-- <input type="number" [id]="field.key" name="captchaValue" [(ngModel)]="captchaValue"
+          (keyup)="keyup(captchaValue)" class="form-control" [formlyAttributes]="field"
+          [class.is-invalid]="showError" /> -->
+
+        <input [pattern]="'^[0-9]*$'" zcPattern [zcPatternRegex]="'^[0-9]*$'" [maxLength]="6" [minLength]="6"
+          name="captchaValue" [(ngModel)]="captchaValue" (keyup)="keyup(captchaValue)" [id]="field.key"
+          class="form-control" [formlyAttributes]="field" [class.is-invalid]="showError" />
+
+        <!-- <span *ngIf="to.required && captchaValue.length>0 && captchaValue.length!=6" style="color: #ff0000">Please Enter Complete Captcha</span> -->
+      </div>
+    </div>
+
+  </ng-container>
+
+</ng-container>

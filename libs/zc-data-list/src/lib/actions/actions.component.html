@@ -1,0 +1,68 @@
+<div class="zc-form-add-btn" *ngIf="type === 'group' && actions.group.items.length !== 0">
+  <ng-container [ngSwitch]="actions.group.displayStyle">
+    <ng-container *ngSwitchCase="'button'">
+      <ng-container *ngFor="let btn of actions.group.items">
+        <button class="btn btn-{{btn.styling && btn.styling.cssStyle?btn.styling.cssStyle:'primary'}}"
+          (click)="onGroupActionClick(btn)" [title]="btn.styling?.tooltip">
+          <i class="{{btn.styling?.icon}}"></i> {{ btn.label }}
+        </button>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'icon'">
+      <ng-container *ngFor="let btn of actions.group.items">
+        <i class="{{btn.styling?.icon}}" (click)="onGroupActionClick(btn)" [title]="btn.styling?.tooltip"></i>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'menu'">
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <i id="dropdownBasic1" ngbDropdownToggle class="icon-ellipsis-v"></i>
+            <div ngbDropdownMenu>
+              <ng-container *ngFor="let btn of actions.group.items">
+                <button class="dropdown-item" (click)="onGroupActionClick(btn)">
+                  <i class="{{btn.styling?.icon}}"></i> {{ btn.label }}
+                </button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>
+
+<div class="zc-form-add-btn" *ngIf="type === 'row' && showItems.length !== 0">
+  <ng-container [ngSwitch]="actions.row.displayStyle">
+    <ng-container *ngSwitchCase="'button'">
+      <ng-container *ngFor="let btn of showItems">
+        <button class="ui-clickable btn btn-{{btn.styling && btn.styling.cssStyle?btn.styling.cssStyle:'primary'}}"
+          (click)="onRowActionClick(btn)" [title]="btn.styling?.tooltip">
+          <i class="{{btn.styling?.icon}}"></i> {{ btn.label }}
+        </button>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'icon'">
+      <ng-container *ngFor="let btn of showItems">
+        <i class="ui-clickable {{btn.styling?.icon}} {{btn.styling?.cssStyle}}" [ngStyle]="{ color: btn.styling?.cssColor }"
+          (click)="onRowActionClick(btn)" [title]="btn.styling?.tooltip"></i>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'menu'">
+      <div class="row" *ngIf="showItems.length > 0">
+        <div class="col">
+          <div ngbDropdown class="ui-clickable d-inline-block">
+            <i id="dropdownBasic1" ngbDropdownToggle class="ui-clickable btn icon-ellipsis-v"></i>
+            <div ngbDropdownMenu class="user-menu">
+              <ng-container *ngFor="let btn of showItems">
+                <button class="dropdown-item" (click)="onRowActionClick(btn)">
+                  <i class="{{btn.styling?.icon}}"></i> {{ btn.label }}
+                </button>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

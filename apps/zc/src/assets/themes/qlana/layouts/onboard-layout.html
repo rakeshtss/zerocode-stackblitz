@@ -1,0 +1,13 @@
+<div class="back-groud-image"></div>
+<div class="login-container">
+  <router-outlet></router-outlet>
+  <div class="app-links" *ngIf="ly.appList && ly.appList.length>1">
+    <ul class="nav">
+      <li class="nav-item" *ngFor="let app of ly.appList">
+        <a class="nav-link active" [routerLink]="[ '/'+app.code]"
+          >{{app.name}}</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>

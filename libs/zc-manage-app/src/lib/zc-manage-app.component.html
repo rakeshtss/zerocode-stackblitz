@@ -1,0 +1,37 @@
+<div
+  class="appManagment"
+  style="float:right"
+  *ngIf="options.type === 'dropdown'"
+>
+  <p-dropdown
+    [options]="appList"
+    placeholder="Select Application"
+    optionLabel="name"
+    (onChange)="navigateUrl($event)"
+    [showClear]="true"
+    filter="true"
+  >
+  </p-dropdown>
+</div>
+
+<div class="appManagment" *ngIf="options.type !== 'dropdown'">
+  <div
+    class="mngContent"
+    *ngFor="let list of appList"
+    routerLink="/{{list.redirectUrl}}"
+  >
+    <div class="mngdescription">
+      <span [class]="list.icon"></span>
+      <p>
+        <strong>{{ list.name }}</strong>
+      </p>
+      <p
+        class="description"
+        style="-webkit-box-orient: vertical;"
+        title="{{list.description}}"
+      >
+        {{ list.description }}
+      </p>
+    </div>
+  </div>
+</div>

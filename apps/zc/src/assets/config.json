@@ -1,0 +1,25 @@
+{
+  "apiUrl": "http://voteisright-prod.zeroco.de/zc-v3-user-svc/2.0/",
+  "client": "voteisright",
+  "captchaKey": "6LcifpQUAAAAAAtWYdlTi23dNXYQdJm00QRxVDSx",
+  "googleMapKey":"AIzaSyDlqvq37mmAUE1TPHzvToOdPfQaq2W7GJk",
+  "clientLogo": "",
+  "faviconUrl": "assets/favicon.ico",
+  "powerByTitle": "",
+  "siteTitle": "",
+  "defaultApp": "zcbase",
+  "loaderUrl": "assets/loaders/Loader3.gif",
+  "profileLinks": [],
+  "profileLinks1": [
+    {
+      "title": "Profile",
+      "url": "swfc/registered-users/profile"
+    },
+    {
+      "title": "Change Password",
+      "url": "zcbase/account/change-password"
+    }
+  ]
+}
+
+

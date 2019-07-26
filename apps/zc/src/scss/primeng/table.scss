@@ -1,0 +1,251 @@
+@import '../../app/config/theme.scss';
+
+/* TurboTable */
+.ui-table .ui-table-thead > tr > th,
+.ui-table .ui-table-tfoot > tr > td {
+  background-color: #f6f7f9;
+  border: 1px solid #d9d9d9;
+  color: #1b1d1f;
+}
+
+.ui-table .ui-table-tbody > tr {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+.ui-table .ui-table-tbody > tr > td {
+  border: 1px solid #d5d5d5;
+  background-color: inherit;
+}
+
+.ui-table .ui-table-tbody > tr.ui-state-highlight {
+  background-color: #186ba0;
+  color: #ffffff;
+}
+
+.ui-table .ui-table-tbody > tr.ui-contextmenu-selected {
+  background-color: #3ca1e2;
+  color: #ffffff;
+}
+
+.ui-table .ui-sortable-column .ui-sortable-column-icon {
+  color: #1b1d1f;
+}
+
+.ui-table .ui-sortable-column.ui-state-highlight {
+  background-color: #186ba0;
+  color: #ffffff;
+}
+
+.ui-table .ui-sortable-column.ui-state-highlight .ui-sortable-column-icon {
+  color: #ffffff;
+}
+
+.ui-table .ui-sortable-column:not(.ui-state-highlight):hover {
+  background-color: #eeeeee;
+  color: #212121;
+}
+
+.ui-table
+  .ui-sortable-column:not(.ui-state-highlight):hover
+  .ui-sortable-column-icon {
+  color: #212121;
+}
+
+.ui-table.ui-table-hoverable-rows
+  .ui-table-tbody
+  > tr:not(.ui-state-highlight):not(.ui-contextmenu-selected):hover {
+  cursor: pointer;
+  background-color: #eeeeee;
+  color: #212121;
+}
+
+@media (max-width: 35em) {
+  .ui-table-responsive .ui-table-tbody > tr {
+    border-top: 1px solid #d5d5d5;
+    border-bottom: 1px solid #d5d5d5;
+  }
+}
+
+/* Row Reorder */
+.ui-table .ui-table-tbody > tr.ui-table-dragpoint-top > td {
+  box-shadow: inset 0 2px 0 0 #186ba0;
+}
+
+.ui-table .ui-table-tbody > tr.ui-table-dragpoint-bottom > td {
+  box-shadow: inset 0 -2px 0 0 #186ba0;
+}
+
+.ui-table {
+  font-family: $main-font;
+
+  .ui-table-thead > tr > th {
+    color: $main-color;
+    padding: 0.45em 0.5em;
+    font-weight: $semi-bold;
+  }
+
+  .ui-table-tbody > tr {
+    color: $main-color;
+
+    > td {
+      p {
+        display: -webkit-box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical !important;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        text-align: left;
+
+        // min-height: 54px;
+      }
+    }
+  }
+}
+
+.ui-table-caption {
+  padding: $padding0;
+  border: $borderNone;
+
+  .table-search {
+    position: relative;
+
+    i {
+      color: $main-color;
+      margin: 4px 4px 0 0;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+
+    input {
+      width: 100%;
+      padding: 7px 25px 7px 7px;
+
+      // border-bottom:none;
+    }
+  }
+}
+
+.roles-table {
+  &.ui-table {
+    border: none;
+
+    th {
+      color: #333333 !important;
+      font-size: $fontSizeLarge;
+
+      &:last-child {
+        border-left: $borderNone;
+      }
+    }
+
+    td {
+      color: $main-color;
+
+      &:last-child {
+        border-left: $borderNone;
+      }
+
+      a {
+        color: $main-color;
+        padding: $padding5 $padding10;
+      }
+    }
+  }
+
+  &.no-borders {
+    padding: $padding10;
+  }
+}
+
+.language-table {
+  &.ui-table .ui-table-tbody > tr > td {
+    padding: $padding10;
+    vertical-align: top;
+    word-wrap: break-word;
+  }
+}
+
+[class^='pi-'],
+[class^='pi-']:before,
+[class*='pi-']:before {
+  font-family: 'tssfont' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+
+  /* speak: none; */
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.pi-caret-left:before {
+  content: '\e017';
+}
+.pi-caret-right:before {
+  content: '\e018';
+}
+.pi-step-backward:before {
+  content: '\e3a6';
+}
+.pi-step-forward:before {
+  content: '\e3a7';
+}
+.pi-search:before {
+  content: '\e155';
+}
+
+.pi-sort:before {
+  content: '\e310';
+  color: #d1b0b0;
+}
+
+.pi-sort-up:before {
+  content: '\e310';
+  color: #9e9e9e;
+}
+
+.pi-sort-down:before {
+  content: '\e30d';
+  color: #9e9e9e;
+}
+
+.pi-chevron-up:before {
+  content: '\e240';
+}
+
+.pi-chevron-down:before {
+  content: '\e23d';
+}
+
+.pi-chevron-right:before {
+  content: '\e23f';
+}
+
+.pi-chevron-left:before {
+  content: '\e23e';
+}
+
+.pi-check:before {
+  content: '\e01f';
+}
+
+[class^='fa-'],
+[class^='fa-']:before,
+[class*=' fa-']:before {
+  font-family: 'tssfont' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-question-circle:before {
+  content: '\e186';
+}

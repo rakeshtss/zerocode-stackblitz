@@ -1,0 +1,24 @@
+.auto-complete-item-ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+.auto-complete-item-li {
+  display: inline-block;
+  flex: 1 1 auto;
+  padding: 5px 0;
+  font-size: 16px;
+  white-space: nowrap;
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.auto-complete-item-li span {
+  color: #7a7772;
+  font-weight: 500;
+}
+.auto-complete-item-li span[class^='icon-'] {
+  line-height: inherit !important;
+}

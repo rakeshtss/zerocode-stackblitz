@@ -1,0 +1,17 @@
+{
+  "apiUrl": "http://mahait.zeroco.de/zc-v3-user-svc/2.0/",
+  "client": "mahait",
+  "captchaKey": "6LcifpQUAAAAAAtWYdlTi23dNXYQdJm00QRxVDSx",
+  "clientLogo": "",
+  "faviconUrl": "assets/favicon.ico",
+  "powerByTitle": "",
+  "siteTitle": "",
+  "defaultApp": "zcbase",
+  "loaderUrl": "assets/loaders/Loader3.gif",
+  "profileLinks": [
+    {
+      "title": "Change Password",
+      "url": "zcbase/account/change-password"
+    }
+  ]
+}

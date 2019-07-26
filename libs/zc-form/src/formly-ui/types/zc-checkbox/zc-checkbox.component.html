@@ -1,0 +1,35 @@
+<ng-container *ngIf="!to.multiple">
+  <div class="custom-control custom-checkbox" [class.readonly]="to.readonly">
+    <input class="custom-control-input" type="checkbox" [class.is-invalid]="showError"
+      [indeterminate]="to.indeterminate && formControl.value === null"
+      [formControl]="formControl" [formlyAttributes]="field" />
+    <label class="custom-control-label" [for]="id">
+      {{ to.label }}
+      <!-- <span *ngIf="to.required">*</span> -->
+    </label>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="to.multiple">
+  <div *ngIf="to.mode == 'view'; else: fieldTemp">
+    <div class="check-list">
+      <ul *ngIf="formControl.value">
+        <li *ngFor="let item of formControl.value; let inx = index">
+          <span>{{ item.name }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ng-template #fieldTemp>
+    <div *ngFor="let option of to.options; let i = index" class="checkbox">
+      <label class="custom-control custom-checkbox">
+        <input type="checkbox" [value]="option" [id]="id + '_' + i" (click)="!to.readonly && checkboxClick(option)"
+          [checked]="isSelected(option)" [class.readonly]="to.readonly"
+           [formlyAttributes]="field"
+          class="custom-control-input" />
+        <span class="custom-control-label">{{ option.name }}</span>
+        <span class="custom-control-indicator"></span>
+      </label>
+    </div>
+  </ng-template>
+</ng-container>

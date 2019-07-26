@@ -1,0 +1,57 @@
+<label *ngIf="to.mode == 'view'">
+  {{ formControl.value?.label || '---' }}
+</label>
+<p-autoComplete
+  *ngIf="to.mode !== 'view'"
+  [formControl]="formControl"
+  [suggestions]="rows"
+  (completeMethod)="search($event)"
+  (onSelect)="change($event)"
+  field="label"
+  [size]="30"
+  placeholder="{{ to.placeholder || 'Select'}}"
+  [minLength]="1"
+  [dropdown]="true"
+>
+  <ng-template let-row pTemplate="item">
+    <ul class="auto-complete-item-ul">
+      <li class="auto-complete-item-li" *ngFor="let col of columns">
+        <span [ngSwitch]="col.type">
+          <span *ngSwitchCase="'phone'">
+            <span class="icon-mobile"></span>
+            {{ row.other[col.field]?.code }}-{{
+              row.other[col.field]?.value
+            }}</span
+          >
+          <span *ngSwitchCase="'email'">
+            <span class="icon-envelope-o"></span>
+            {{ row.other[col.field] }}</span
+          >
+          <span *ngSwitchCase="'date'">
+            {{ row.other[col.field] | date: 'd-MMM-yyyy' }}</span
+          >
+          <span *ngSwitchCase="'datetime'">
+            {{ row.other[col.field] | date: 'd-MMM-yyyy' }}</span
+          >
+          <span *ngSwitchCase="'currency'">
+            {{
+              row.other[col.field]?.value
+                | currency
+                  : row.other[col.field]?.code
+                  : row.other[col.field]?.code + ' '
+            }}</span
+          >
+          <span
+            *ngSwitchCase="'select'"
+            [ngStyle]="{ color: row.other[col.field]?.color }"
+          >
+            {{ row.other[col.field]?.label }}
+          </span>
+          <span *ngSwitchDefault>
+            <span> {{ row.other[col.field] }} </span>
+          </span>
+        </span>
+      </li>
+    </ul>
+  </ng-template>
+</p-autoComplete>

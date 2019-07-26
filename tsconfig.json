@@ -1,0 +1,37 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es5",
+    "module": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@zc-ui/zc-utilities": ["libs/zc-utilities/src/index.ts"],
+      "@zc-ui/zc-form": ["libs/zc-form/src/index.ts"],
+      "@zc-ui/zc-data-list": ["libs/zc-data-list/src/index.ts"],
+      "@zc-ui/zc-page-builder": ["libs/zc-page-builder/src/index.ts"],
+      "@zc-ui/zc-page-builder/comp-render": [
+        "libs/zc-page-builder/src/comp-render.ts"
+      ],
+      "@zc-ui/zc-login": ["libs/zc-login/src/index.ts"],
+      "@zc-ui/zc-manage-app": ["libs/zc-manage-app/src/index.ts"],
+      "@zc-ui/zc-menu": ["libs/zc-menu/src/index.ts"],
+      "@zc-ui/zc-tabs": ["libs/zc-tabs/src/index.ts"],
+      "@zc-ui/zc-step-form": ["libs/zc-step-form/src/index.ts"],
+      "@zc-ui/zc-image-slideshow": ["libs/zc-image-slideshow/src/index.ts"],
+      "@zc-ui/zc-form-modal": ["libs/zc-form-modal/src/index.ts"],
+      "@zc-ui/zc-pdf-generator": ["libs/zc-pdf-generator/src/index.ts"],
+      "@zc-ui/clients/qlana": ["libs/clients/qlana/src/index.ts"],
+      "@zc-ui/zc-accordion": ["libs/zc-accordion/src/index.ts"],
+      "@zc-ui/zc-charts": ["libs/zc-charts/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

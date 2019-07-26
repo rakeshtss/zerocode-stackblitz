@@ -1,0 +1,113 @@
+/* Styles for body part starts */
+.bg-img {
+  background-image: url(../images/background-img.png);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  height: 440px;
+}
+.bg-img h2 {
+  font-size: 27px;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.bg-img p {
+  font-size: 18px;
+  color: #d5d5d5;
+}
+.bg-img .row1 {
+  padding: 60px 0px 100px 0px;
+}
+.bg-img .padding-top {
+  padding: 50px 0px 0px 90px;
+}
+.bg-img .card1:after {
+  background-image: url(../images/shadow.png);
+  background-position: center bottom;
+  background-repeat: repeat-x;
+  bottom: -37px;
+  content: '';
+  display: block;
+  height: 36px;
+  position: absolute;
+  width: 100%;
+  right: 0;
+}
+.bg-img .card1 {
+  background: #fff;
+  width: 380px;
+  height: auto;
+  position: relative;
+  padding: 35px;
+  margin-bottom: 60px;
+  float: right;
+}
+.bg-img .card1 h4 {
+  font-size: 18px;
+  color: #000;
+  padding-bottom: 20px;
+}
+.bg-img .card1 .form-control {
+  height: 35px;
+  border-radius: 0;
+}
+.bg-img .card1 .change-input {
+  width: 40%;
+  height: 35px;
+  border: 1px solid #000;
+  margin-top: -8px;
+}
+.bg-img .card1 i {
+  color: #8daffb;
+  margin-left: 10px;
+  top: 6px;
+  position: relative;
+  font-size: 25px;
+}
+.bg-img .card1 .top-margin {
+  margin-top: -10px;
+  margin-bottom: 25px;
+}
+.bg-img .card1 .btn1 {
+  width: 100%;
+  border-radius: 0;
+  background: #007f7f;
+  color: #fff;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  height: 35px;
+}
+.bg-img .card1 .btn2 {
+  width: 100%;
+  border-radius: 0;
+  background: #7fbfbf;
+  color: #fff;
+  letter-spacing: 0.5px;
+  font-size: 18px;
+  height: 35px;
+}
+.bg-img .card1 .right-padding {
+  padding-right: 5px;
+}
+.bg-img .card1 .left-padding {
+  padding-left: 5px;
+}
+.bg-img .card1 .left-float {
+  float: left;
+}
+.bg-img .card1 .right-float {
+  float: right;
+}
+.bg-img .card1 .signup-space {
+  padding: 20px 0px;
+}
+.bg-img .card1 .signup-space span {
+  color: #3499e6;
+}
+.bg-img .card1 .signup-space span a {
+  font-size: 12px;
+  text-decoration: none;
+  font-weight: 500;
+}

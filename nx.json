@@ -1,0 +1,69 @@
+{
+  "npmScope": "zc-ui",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "zc": {
+      "tags": ["client"]
+    },
+    "zc-e2e": {
+      "tags": []
+    },
+    "zc-utilities": {
+      "tags": ["utilities"]
+    },
+    "zc-form": {
+      "tags": ["zc-form"]
+    },
+    "zc-data-list": {
+      "tags": ["zc-data-list"]
+    },
+    "zc-page-builder": {
+      "tags": ["zc-page-builder"]
+    },
+    "zc-login": {
+      "tags": []
+    },
+    "zc-manage-app": {
+      "tags": ["zc-manage-app"]
+    },
+    "zc-menu": {
+      "tags": ["zc-menu"]
+    },
+    "zc-tabs": {
+      "tags": ["zc-tabs"]
+    },
+    "zc-step-form": {
+      "tags": ["zc-step-form"]
+    },
+    "demo": {
+      "tags": ["demo"]
+    },
+    "demo-e2e": {
+      "tags": []
+    },
+    "zc-image-slideshow": {
+      "tags": ["slideshow"]
+    },
+    "zc-form-modal": {
+      "tags": ["zc-form-modal"]
+    },
+    "zc-pdf-generator": {
+      "tags": ["zc-pdf-generator"]
+    },
+    "clients-qlana": {
+      "tags": ["qlana"]
+    },
+    "zc-accordion": {
+      "tags": []
+    },
+    "zc-charts": {
+      "tags": ["zc-charts"]
+    }
+  }
+}

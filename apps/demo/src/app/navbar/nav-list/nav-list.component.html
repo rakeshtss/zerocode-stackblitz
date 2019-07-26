@@ -1,0 +1,22 @@
+<a
+  mat-list-item
+  (click)="onItemSelected(item)"
+  [ngClass]="{
+    active: item.link ? router.isActive(item.link, true) : false,
+    expanded: expanded
+  }"
+>
+  {{ item.linkText }}
+  <span *ngIf="item.children && item.children.length">
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</a>
+<div *ngIf="expanded" [ngClass]="expanded ? 'subMenu' : ''">
+  <nav-list
+    *ngFor="let child of item.children"
+    [item]="child"
+    [ngClass]="expanded ? 'subMenu' : ''"
+  ></nav-list>
+</div>

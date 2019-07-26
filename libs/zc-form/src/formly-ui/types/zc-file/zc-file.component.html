@@ -1,0 +1,54 @@
+<div *ngIf="to.mode == 'view' || to.readonly; else: fieldTemp">
+  <div class="upload-files-list" *ngIf="formControl.value && formControl.value.length >0;else:dash">
+    <ul class="file-view" *ngIf="to.type != 'image'">
+      <li *ngFor="let file of formControl.value; let inx = index">
+        <span>{{ file.name }}</span>
+        <a
+          *ngIf="file.path"
+          class="icon-download"
+          [attr.href]="baseUrl + 'get/' + file.path"
+          download
+        ></a>
+      </li>
+    </ul>
+  </div>
+</div>
+<ng-template #dash>
+  ---
+</ng-template>
+<ng-template #fieldTemp>
+  <div class="custom-file" *ngIf="to.multiple || (formControl.value && formControl.value.length === 0) || (formControl.value && formControl.value.length === 1 && formControl.value[0].deleted)">
+    <input
+      type="file"
+      [multiple] = "to.multiple"
+      (change)="detectFiles($event)"
+      #fileInput
+      (click)="fileInput.value = null"
+      class="custom-file-input"
+    />
+    <label class="custom-file-label" for="customFile"
+      >Select file or Drop here</label
+    >
+    <!--
+      <label class="custom-file-label" for="customFile"> <i class="icon-plus"></i> </label>
+    -->
+  </div>
+  <div class="upload-files-list">
+    <div *ngIf="showLoader">Loading..........</div>
+    <ul *ngIf="formControl.value && formControl.value.length > 0">
+      <li *ngFor="let file of formControl.value; let inx = index">
+        <span *ngIf="!file.deleted">
+          <span>{{ file.name }}</span>
+          <a class="icon-trash" (click)="removeFile(inx, file)"></a>
+          <a
+            *ngIf="file.path"
+            target="blank"
+            class="icon-download"
+            [attr.href]="baseUrl + 'get/' + file.path"
+            download
+          ></a>
+        </span>
+      </li>
+    </ul>
+  </div>
+</ng-template>

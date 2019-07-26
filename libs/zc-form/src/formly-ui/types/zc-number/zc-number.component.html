@@ -1,0 +1,23 @@
+<!--
+  <input zcPattern [zcPatternRegex]="to.pattern || '^[0-9]*$'" [id]="field.key" type="number" [formControl]="formControl"
+  class="form-control form-control-sm" [formlyAttributes]="field" [class.is-invalid]="showError" />
+-->
+<label *ngIf="to.mode == 'view'; else: fieldTemp">
+  <span zcFieldValueFormat [type]="to.type" [value]="formControl.value"></span>
+</label>
+<ng-template #fieldTemp>
+  <input *ngIf="!to.currencyFormat;else:currencyFormat" [pattern]="to.pattern || '^[0-9]*$'" zcPattern
+    [zcPatternRegex]="to.pattern || '^[0-9]*$'" [min]="to.min" [max]="to.max" [readonly]="to.readonly" [id]="field.key"
+    [formControl]="formControl" class="form-control" [formlyAttributes]="field" [class.is-invalid]="showError" />
+</ng-template>
+
+<ng-template #currencyFormat>
+  <input [id]="field.key"
+    [options]="{ prefix: this.to.prefix || '', thousands: this.to.thousands || ',', decimal: this.to.decimal || '.' }"
+    currencyMask [formControl]="formControl" class="form-control form-control-sm" [formlyAttributes]="field"
+    [class.is-invalid]="showError" />
+</ng-template>
+<!--
+  <p-spinner [type]="to.type" [min]="to.min" [max]="to.max"  [readonly]="to.readonly"
+  [id]="field.key" [formControl]="formControl" class="form-control" [formlyAttributes]="field" [class.is-invalid]="showError"></p-spinner>
+-->

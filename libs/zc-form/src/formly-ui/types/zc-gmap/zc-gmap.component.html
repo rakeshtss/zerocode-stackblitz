@@ -1,0 +1,41 @@
+<ng-container *ngIf="to.multiple; else: singleMap">
+  <div class="form-group" [style.display]="true ? 'none' : 'block'">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+      class="form-control" #search />
+  </div>
+  <agm-map style="height:300px" [latitude]="to.options[0]?.lat" [longitude]="to.options[0]?.lng" [zoom]="to.zoom || 11">
+    <agm-marker (markerClick)="clickEvent(marker)" *ngFor="let marker of to.options" [latitude]="marker?.lat"
+      [longitude]="marker?.lng"></agm-marker>
+  </agm-map>
+</ng-container>
+<ng-template #singleMap>
+  <div *ngIf="to.mode == 'view'; else: fieldTemp">
+    <div class="form-group" [style.display]="true ? 'none' : 'block'">
+      <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+        class="form-control" #search />
+    </div>
+    <agm-map style="height:300px" [latitude]="formControl.value?.lat" [longitude]="formControl.value?.lng"
+      [zoom]="to.zoom || 11">
+      <agm-marker (markerClick)="clickEvent(formControl.value)" [latitude]="formControl.value?.lat"
+        [longitude]="formControl.value?.lng"></agm-marker>
+    </agm-map>
+  </div>
+</ng-template>
+
+<ng-template #fieldTemp>
+  <div class="form-group" [style.display]="
+      to.readonly == 'true' || to.readonly == true ? 'none' : 'block'
+    ">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text"
+      class="form-control" #search />
+  </div>
+  <agm-map style="height:300px" [latitude]="lat" [longitude]="lng" [zoom]="11">
+    <agm-circle *ngIf="to.circle" [latitude]="lat" [longitude]="lng" [radius]="to.circleRadius || 5000"
+      [fillColor]="to.circleFillColor || 'red'" [circleDraggable]="to.circleDraggable || false"
+      [editable]="to.circleEditable || false">
+    </agm-circle>
+    <agm-marker [markerDraggable]="to.markerDragable || true" (markerClick)="clickEvent({ lat: lat, lng: lng })"
+      (dragEnd)="markerDragEnd($event)" [latitude]="lat" [longitude]="lng">
+    </agm-marker>
+  </agm-map>
+</ng-template>

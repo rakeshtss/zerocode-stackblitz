@@ -1,0 +1,99 @@
+.card-view .ui-table-tbody {
+  display: flex;
+  flex-wrap: wrap;
+  .card-template-8 {
+    width: 25%;
+    display: flex;
+    padding: 0 15px 15px 0;
+    background: #fff;
+    @media (max-width: 991px) {
+      width: 25%;
+    }
+    @media (max-width: 767px) {
+      width: 50%;
+    }
+    .card-widget {
+      padding: 5px 1px 2px 2px;
+      width: 100%;
+      border: 1px solid #ccc;
+      box-shadow: 0px 0px 6px #999;
+      border-radius: 0;
+      background: #f15a23;
+      .card-body {
+        background: #fff;
+        padding: 5px;
+        .card-star {
+          text-align: right;
+          ul {
+            margin: 0;
+            padding: 0px;
+            list-style-type: none;
+            li {
+              display: inline-block;
+            }
+          }
+        }
+        .card-body-left {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          // padding: 20px 0;
+          .card-img {
+            width: 95px;
+            height: 150px;
+          }
+        }
+        .card-body-right {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .description {
+            padding: 15px;
+            p {
+              margin: 0;
+            }
+          }
+          p {
+            margin: 8px;
+          }
+          a {
+            color: #fff;
+            padding: 3px 5px;
+            border-radius: 3px;
+          }
+        }
+        .card-icon {
+          text-align: right;
+          padding: 10px 0;
+          span {
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 3px;
+          }
+        }
+      }
+      .card-footer {
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #ccc;
+        padding-top: 5px;
+        background: #fff;
+        .card-footer-left {
+          flex: 1;
+          padding: 0 10px;
+          p {
+            margin: 0;
+          }
+        }
+        .card-footer-right {
+          font-size: 20px;
+          span {
+            padding-right: 10px;
+            color: #ccc;
+          }
+        }
+      }
+    }
+  }
+}

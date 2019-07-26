@@ -1,0 +1,14 @@
+<!--
+  <input type="text" [formControl]="formControl" class="form-control" [formlyAttributes]="field" [class.is-invalid]="showError">
+-->
+<label *ngIf="to.mode == 'view'; else: fieldTemp">
+  <span *ngIf="!to.displayFormat"  zcFieldValueFormat [type]="to.type" [value]="formControl.value"></span>
+  <ng-template *ngIf="to.displayFormat" dynamic-template [template]="to.displayFormat"
+    [context]="{ model: model,value:formControl.value }"></ng-template>
+</label>
+<ng-template #fieldTemp>
+  <input [type]="to.type" [maxLength]="to.maxLength || 160" [minLength]="to.minLength || 0" [readonly]="to.readonly"
+    [id]="field.key" [formControl]="formControl" class="form-control" [formlyAttributes]="field"
+    [class.is-invalid]="showError" />
+</ng-template>
+<!-- zcPattern [zcPatternRegex]="to.pattern" -->

@@ -1,0 +1,54 @@
+.select-field.readonly {
+    .ui-dropdown {
+        .ui-dropdown-label, .ui-dropdown-trigger {
+            background-color: #e9ecef !important;
+            cursor: not-allowed !important;
+        }
+    }
+}
+
+.field-radio.readonly {
+    pointer-events: none !important;
+
+    .custom-control-label::before {
+        background-color: #312c2c6e;
+        border: 1px solid #e0e0e0;
+    }
+}
+
+// Start zc-tabs
+
+.zc-tabs {
+    &.vertical {
+        .mat-tab-group {
+            flex-direction: row;
+        }
+
+        .mat-tab-header {
+            border-bottom: none;
+        }
+
+        .mat-tab-header-pagination {
+            display: none !important;
+        }
+
+        .mat-tab-labels {
+            flex-direction: column;
+        }
+
+        .mat-ink-bar {
+            height: 100%;
+            left: 98% !important;
+        }
+
+        .mat-tab-body-wrapper {
+            flex: 1 1 auto;
+        }
+    }
+}
+
+// End zc-tabs
+
+zc-com-render{
+  width: 100%;
+}

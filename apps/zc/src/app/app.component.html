@@ -1,0 +1,7 @@
+<router-outlet></router-outlet>
+<footer style="display: none">Version: {{version.version}} ({{version.hash}}) ({{version.date | date:'full'}})</footer>
+<div *ngIf="loading" class="loader" style="color:red">
+  <div class="loading">
+    <img width="150" [src]="appConfig.settings.loaderUrl" />
+  </div>
+</div>

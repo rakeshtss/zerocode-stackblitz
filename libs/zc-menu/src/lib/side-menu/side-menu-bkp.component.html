@@ -1,0 +1,98 @@
+<ul class="zc-menu customScroll nav navbar-nav">
+  <li
+    class="nav-item nav-dropdown drop"
+    [class.nav-dropdown]="m.childs"
+    routerLinkActive=""
+    ngbDropdown
+    *ngFor="let m of menu"
+  >
+    <!-- (click)="addAnimation()" -->
+    <a
+      *ngIf="m.childs && m.childs.length > 1"
+      [matTooltip]="m.label"
+      matTooltipPosition="right"
+      class="nav-link nav-dropdown-toggle dropdown-toggle"
+      routerLinkActive="active"
+      ngbDropdownToggle
+    >
+      <span class="icon icon-angle-right dp-arrow"></span>
+      <i class="{{m.icon}}"></i>
+      <span class="nav-link-text">{{ m.label }}</span>
+    </a>
+    <a
+      [matTooltip]="m.label"
+      matTooltipPosition="right"
+      [routerLink]="['/' + m.app + '/' + m.code + '/' + m.childs[0].code]"
+      (click)="menuClose()"
+      *ngIf="!m.childs || (m.childs && m.childs.length == 1)"
+      routerLinkActive="active"
+      class="nav-link"
+      ngbDropdownToggle
+    >
+      <i *ngIf="m.icon" class="{{m.icon}}"></i>
+      <span class="nav-link-text">{{ m.label }}</span>
+    </a>
+    <ul
+      class="nav-dropdown-items drop-down"
+      *ngIf="m.childs && m.childs.length > 1"
+      ngbDropdownMenu
+    >
+      <li
+        class="nav-item nav-dropdown drop"
+        [class.nav-dropdown]="s.childs"
+        ngbDropdown
+        *ngFor="let s of m.childs"
+      >
+        <a
+          *ngIf="s.childs"
+          class="nav-link nav-dropdown-toggle"
+          routerLinkActive="active"
+          ngbDropdownToggle
+        >
+          <span class="nav-link-text">{{ s.label }}</span>
+          <!-- <span class="fa fa-angle-right dp-arrow"></span> -->
+        </a>
+        <a
+          *ngIf="!s.childs"
+          [routerLink]="['/' + m.app + '/' + m.code + '/' + s.code]"
+          (click)="menuClose()"
+          class="nav-link"
+          routerLinkActive="active"
+          ngbDropdownToggle
+        >
+          <i *ngIf="s.icon" class="{{s.icon}}"></i> <span>{{ s.label }}</span>
+        </a>
+        <ul
+          class="nav-dropdown-items drop-down"
+          *ngIf="s.childs"
+          ngbDropdownMenu
+        >
+          <li
+            class="nav-item nav-dropdown"
+            [class.nav-dropdown]="ss.childs"
+            *ngFor="let ss of s.childs"
+          >
+            <a
+              *ngIf="ss.childs"
+              class="nav-link nav-dropdown"
+              routerLinkActive="active"
+            >
+              <!-- <i class="fa {{ss.icon}}"></i> -->
+              <span class="nav-link-text">{{ ss.label }}</span>
+              <!-- <span class="fa fa-angle-right dp-arrow"></span> -->
+            </a>
+            <a
+              *ngIf="!ss.childs"
+              [routerLink]="['/zc-admin/' + ss.code]"
+              class="nav-link"
+              routerLinkActive="active"
+            >
+              <!-- <i class="fa {{ss.icon}}"></i> -->
+              <span class="nav-link-text">{{ ss.label }} sub</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>

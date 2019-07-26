@@ -1,0 +1,11 @@
+<ng-container [ngSwitch]="options.properties.type">
+  <ng-container *ngSwitchCase="'table'">
+    <zc-data-list-table [options]="options"></zc-data-list-table>
+  </ng-container>
+  <ng-container *ngSwitchCase="'card'">
+    <zc-data-list-table [options]="options"></zc-data-list-table>
+  </ng-container>
+  <ng-container *ngSwitchCase="'kanban'">
+    <zc-data-list-kanban [options]="options"></zc-data-list-kanban>
+  </ng-container>
+</ng-container>

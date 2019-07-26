@@ -1,0 +1,641 @@
+<!--
+  <div class="top-header hidden-sm hidden-xs layout-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-8">
+          <div class="social-top">
+            <ul class="top-social">
+              <li><a href="javascript:;">Login</a>
+              </li>
+              <li><a href="javascript:;">Skip to Navigation</a>
+              </li>
+              <li><a href="javascript:;">Skip to Content</a>
+              </li>
+              <li><a href="javascript:;">A-</a>
+              </li>
+              <li><a href="javascript:;">A</a>
+              </li>
+              <li><a href="javascript:;">A+</a>
+              </li>
+              <li class="black-css"><a href="#">A</a></li>
+              <li class="white-css"><a href="#">A</a></li>
+              <li>
+                <select class="form-control">
+                  <option>English</option>
+                  <option>Hindi</option>
+                  <option>Marathi</option>
+                </select>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-4">
+          <div class="pull-right">
+            <div class="header-rightside">
+              <ul>
+                <li>
+                  <div ngbDropdown class="user-details" placement="bottom-right">
+                    <a class="" id="dropdownBasic1" ngbDropdownToggle>
+                      <span class="welcome">Welcome </span>
+                      <span class="welcome-user"> {{ ly.userDetails.name}}</span>
+                    </a>
+
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="user-menu">
+                      <ul>
+                        <li>
+                          <div class="user-info">
+                            <label *ngIf="ly.userDetails.role?.label">{{ ly.userDetails.role.label}}</label>
+                            <label *ngIf="ly.userDetails.addInfo?.branch">{{ ly.userDetails.addInfo.branch?.label}}</label>
+                            <label *ngIf="ly.userDetails.phone?.isdCode">{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                            </label>
+                          </div>
+                        </li>
+                        <ng-container *ngIf="ly.siteConfig && ly.siteConfig.profileLinks.length > 0 ">
+                          <li *ngFor="let link of ly.siteConfig.profileLinks">
+                            <ng-container [ngSwitch]="link.type">
+                              <a *ngSwitchDefault [routerLink]="['/'+link.url]" class="dropdown-item" [target]="link.target">{{link.title}}</a>
+                            </ng-container>
+                          </li>
+                        </ng-container>
+                        <li>
+                          <button class="dropdown-item" (click)="ly.logout()">
+                            Logout
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
+<div class="head-color maha-head-color">
+  <div class="container">
+    <div class="header-middle">
+      <div class="col-md-1 col-sm-1 filmcity-logo">
+        <img src="assets/themes/mahait/images/Filmcitylogo.svg" alt="Film City Logo" />
+      </div>
+      <div class="col-md-10 col-sm-10">
+        <p class="maharashtra_film_stage">
+          MAHARASHTRA FILM, STAGE & CULTURAL DEVELOPMENT CORPORATION LIMITED
+          <br /><small style="font-weight:normal"
+            >(A Government of Maharashtra Undertaking)</small
+          >
+        </p>
+
+        <p></p>
+      </div>
+
+      <div class="col-md-1 col-sm-1 maharashtra-logo">
+        <img
+          src="assets/themes/mahait/images/Seal_of_Maharashtra.png"
+          alt="Maharashtra Logo"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Start Header Area -->
+<!-- user-maha-header -->
+<!--
+  <header class="clearfix maha-header maha-user-header" id="header">
+    <nav class="navbar navbar-default" id="myHeader navbar">
+      <div class="container-fluid">
+        <div class="two-parts">
+          <div class="navbar-collapse collapse">
+            <div class="side-menu" [ngClass]="ly.menuState">
+              <a href="assets/mahait/html/home.html" class="maha-home">Home</a>
+              <zc-com-render type="menu" [options]="{app: ly.currentApp}"></zc-com-render>
+            </div>
+          </div>
+          <div class="header-rightside">
+            <ul>
+              <li>
+                <div ngbDropdown class="user-details" placement="bottom-right">
+                  <a class="" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="welcome">Welcome </span>
+                    <span class="welcome-user"> {{ ly.userDetails.name}}</span>
+                  </a>
+
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="user-menu">
+                    <ul id="profile-links">
+                      <li>
+                        <div class="user-info">
+                          <label *ngIf="ly.userDetails.role?.label">{{ ly.userDetails.role.label}}</label>
+                          <label *ngIf="ly.userDetails.addInfo?.branch">{{ ly.userDetails.addInfo.branch?.label}}</label>
+                          <label *ngIf="ly.userDetails.phone?.isdCode">{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                          </label>
+                        </div>
+                      </li>
+                      <ng-container *ngIf="ly.siteConfig && ly.siteConfig.profileLinks.length > 0 ">
+                        <li *ngFor="let link of ly.siteConfig.profileLinks">
+                          <ng-container [ngSwitch]="link.type">
+                            <a *ngSwitchDefault [routerLink]="['/'+link.url]" class="dropdown-item" [target]="link.target">{{link.title}}</a>
+                          </ng-container>
+                        </li>
+                      </ng-container>
+                      <li>
+                        <button class="dropdown-item" id="logout"  (click)="ly.logout()">
+                          Logout
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+-->
+<header class="clearfix maha-header" id="header">
+  <nav class="navbar navbar-default" id="myHeader navbar">
+    <div class="container">
+      <div class="two-parts">
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--
+              <li><a href="assets/mahait/html/index.html" class="" >Home</a></li>
+              <li class="drop"><a>About Us <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/history.html" >History</a></li>
+                  <li><a href="assets/mahait/html/Management-Filmcity.html" >Management</a></li>
+                  <li><a href="assets/mahait/html/Single-Window-Facilitation-Cell.html" >Single Window Facilitation Cell (SWFC)</a></li>
+                  <li><a href="assets/mahait/html/Clients.html" >Clients</a></li>
+                </ul>
+              </li>
+
+              <li class="drop"><a href="#">Services <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/Facilities_at_Filmcity.html" >Facilities at Filmcity</a></li>
+                  <li><a href="#">Concession & Subsidies by State Government </a></li>
+                  <li><a href="#">Application for Subsidy</a></li>
+                </ul>
+              </li>
+
+              <li class="drop"><a href="#">Locations <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="/#/swfc/view-location-description/view-location-description" >Location Gallery</a></li>
+                  <li><a href="/#/swfc/view-fixed-locations/fixed-locations-avalability" >View Location Availability</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Filmcity Booking</a></li>
+
+              <li class="drop"><a href="#">Shooting Permission <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="#">Third Party Verification</a></li>
+                  <li><a href="assets/mahait/html/How_to_Apply.html" >How to Apply</a></li>
+                  <li><a href="/#/swfc/indicative-rate-chart/indicative-rate-chart-list" >Rate Chart</a></li>
+                  <li><a href="/#/swfc/caf/create-new" >Apply Now</a></li>
+                  <li><a href="#">Check Status</a></li>
+                  <li><a href="/#/swfc/request-for-location/request-for-location" >Request for Location</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Grievances</a></li>
+              <li class="drop"><a href="#">Downloads <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="#">FAQs</a></li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Reports <i
+                        class="fa fa-sort-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Annual Reports</a></li>
+                      <li><a href="#">MoA</a></li>
+                      <li><a href="#">Other Reports</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Policy/ Circular/ GR/ Incentives/ CSR</a></li>
+                  <li><a href="#">Database (Production House List; Equipment's’ Provider List)</a></li>
+                  <li><a href="#">RTI</a></li>
+                </ul>
+              </li>
+              <li><a href="assets/mahait/html/Tenders.html" >Tenders</a></li>
+
+              <li class="drop"><a href="#">Contact Us <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/MFSCDC.html" >MFSCDC</a></li>
+                  <li><a href="assets/mahait/html/SWFC.html" >SWFC</a></li>
+                  <li><a href="assets/mahait/html/Stakeholder_Departments.html" >Stakeholder Departments</a></li>
+                </ul>
+              </li>
+            -->
+
+            <li>
+              <a href="assets/mahait/html/index.html" class=""
+                >Home</a
+              >
+            </li>
+            <li class="drop">
+              <a>About Us <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <!--
+                  <li><a href="assets/mahait/html/history.html" >History</a></li>
+                  <li><a href="assets/mahait/html/Management-Filmcity.html" >Management</a></li>
+                  <li><a href="assets/mahait/html/Single-Window-Facilitation-Cell.html" >Single Window Facilitation Cell (SWFC)</a></li>
+                  <li><a href="assets/mahait/html/Clients.html" >Clients</a></li>
+                -->
+
+                <li>
+                  <a
+                    href="assets/mahait/html/maharashtra-film-cell.html"
+
+                    >Maharashtra Film Cell (MFC)</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="assets/mahait/html/Management-Filmcity.html"
+
+                    >Management</a
+                  >
+                </li>
+                <li>
+                  <a href="assets/mahait/html/Nodal-Agency.html"
+                    >Nodal Agency</a
+                  >
+                </li>
+                <li>
+                  <a href="assets/mahait/html/Services.html"
+                    >Services</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <!--
+              <li class="drop"><a href="#">Services <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/Facilities_at_Filmcity.html" >Facilities at Filmcity</a></li>
+                  <li><a href="#">Concession & Subsidies by State Government </a></li>
+                  <li><a href="#">Application for Subsidy</a></li>
+                </ul>
+              </li>
+            -->
+            <!--
+              <li class="drop"><a href="#">Locations <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/Location_Gallery.html" >Location Gallery</a></li>
+                  <li><a href="assets/mahait/html/Location_Gallery.html" >View Location Availability</a></li>
+                </ul>
+              </li>
+            -->
+            <li class="drop">
+              <a href="javascript:;">Locations <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <li>
+                  <a
+                    href="/#/swfc/view-location-description/view-location-description"
+                    >Location Gallery</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/#/swfc/view-fixed-locations/fixed-locations-avalability"
+                    >View Location Availability</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li><a href="javascript:;">Filmcity Booking</a></li>
+
+            <li class="drop">
+              <a href="javascript:;"
+                >Shooting Permission <i class="fa fa-sort-down"></i
+              ></a>
+              <ul class="drop-down">
+                <!-- <li><a href="#">Third Party Verification</a></li> -->
+                <li>
+                  <a href="assets/mahait/html/How_to_Apply.html"
+                    >How to Apply</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/#/swfc/indicative-rate-chart/indicative-rate-chart-list"
+
+                    >Rate Chart</a
+                  >
+                </li>
+                <!-- <li>
+                  <a href="/#/swfc/caf/create-new" >Apply Now</a>
+                </li> -->
+                <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'production_house'"><a href="/#/swfc/caf/create-new">Apply Now</a></li>
+                <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value !== 'production_house'"><a href="/#/swfc/caf/create-caf-individual">Apply Now</a></li>
+                <li><a href="javascript:;">Check Status</a></li>
+                <li>
+                  <a
+                    href="/#/swfc/request-for-location/request-for-location"
+
+                    >Request for Location</a
+                  >
+                </li>
+                <li><a href="/#/swfc/third-party-verification/third-party-verification">Third Party Verification</a></li>
+              </ul>
+            </li>
+            <li><a href="/#/">Dashboard</a></li>
+            <li *ngIf="!ly.userDetails || !ly.userDetails.role || !ly.userDetails.role.value || !ly.userDetails.role.value"><a href="javascript:;">Grievances</a></li>
+            <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'department_user'"><a href="/#/swfc/grievance/grievance-dept">Grievances</a></li>
+            <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'mfscdc_admin'"><a href="/#/swfc/grievance/grievance-mfscdc">Grievances</a></li>
+            <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'applicant'"><a href="/#/swfc/grievance/grievance-dashboard">Grievances</a></li>
+            <li *ngIf="ly.userDetails && ly.userDetails.role && ly.userDetails.role.value && ly.userDetails.role.value === 'production_house'"><a href="/#/swfc/grievance/grievance-dashboard">Grievances</a></li>
+            <li>
+              <a href="assets/mahait/html/download.html"
+                >Downloads</a
+              >
+            </li>
+            <!--
+              <li class="drop"><a href="#">Downloads <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="#">FAQs</a></li>
+                  <li class="dropdown-submenu">
+                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown">Reports <i
+                        class="fa fa-sort-down"></i></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="#">Annual Reports</a></li>
+                      <li><a href="#">MoA</a></li>
+                      <li><a href="#">Other Reports</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Policy/ Circular/ GR/ Incentives/ CSR</a></li>
+                  <li><a href="#">Database (Production House List; Equipment's’ Provider List)</a></li>
+                  <li><a href="#">RTI</a></li>
+                </ul>
+              </li>
+            -->
+            <!--
+              <li><a href="assets/mahait/html/Tenders.html" >Tenders</a></li>
+            -->
+
+            <!--
+              <li class="drop"><a href="#">Contact Us <i class="fa fa-sort-down"></i></a>
+                <ul class="drop-down">
+                  <li><a href="assets/mahait/html/MFSCDC.html" >MFSCDC</a></li>
+                  <li><a href="assets/mahait/html/SWFC.html" >SWFC</a></li>
+                  <li><a href="assets/mahait/html/Stakeholder_Departments.html" >Stakeholder Departments</a>
+                  </li>
+                </ul>
+              </li>
+            -->
+
+            <li class="drop">
+              <a href="javascript:;">Contact Us <i class="fa fa-sort-down"></i></a>
+              <ul class="drop-down">
+                <!-- <li><a href="MFSCDC.html">MFSCDC</a></li> -->
+                <li>
+                  <a href="assets/mahait/html/MFC.html"
+                    >Maharashtra Film Cell</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="assets/mahait/html/Stakeholder_Departments.html"
+
+                    >Stakeholder Departments</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="drop user-details">
+              <a class="profile-anchor" id="dropdownBasic1">
+                <span class="welcome-user icon-users"></span>
+              </a>
+              <ul class="drop-down right-side user-menu" id="profile-links">
+                <li class="first-li">
+                  <div class="user-info">
+                      <label *ngIf="ly.userDetails.role?.label"
+                      ><div class="welcome-user"> {{ ly.userDetails.name}}</div>{{ ly.userDetails.role.label}}</label
+                      >
+                    <label *ngIf="ly.userDetails.addInfo?.branch"
+                      >{{ ly.userDetails.addInfo.branch?.label}}</label
+                    >
+                    <label *ngIf="ly.userDetails.phone?.isdCode"
+                      >{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                    </label>
+                  </div>
+                </li>
+                <ng-container
+                  *ngIf="ly.siteConfig && ly.siteConfig.profileLinks.length > 0 "
+                >
+                  <li *ngFor="let link of ly.siteConfig.profileLinks">
+                    <ng-container [ngSwitch]="link.type">
+                      <a
+                        *ngSwitchDefault
+                        [routerLink]="['/'+link.url]"
+                        class="dropdown-item"
+                        [target]="link.target"
+                        >{{link.title}}</a
+                      >
+                    </ng-container>
+                  </li>
+                </ng-container>
+                <li>
+                  <button
+                    class="dropdown-item"
+                    id="logout"
+                    (click)="ly.logout()"
+                  >
+                    Logout
+                    <span class="icon-sign-out pull-right"></span>
+                  </button>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--
+          <div class="header-rightside">
+            <ul>
+              <li>
+                <div ngbDropdown class="user-details" placement="bottom-right">
+                  <a class="" id="dropdownBasic1" ngbDropdownToggle>
+                    <span class="welcome">Welcome </span>
+                    <span class="welcome-user"> {{ ly.userDetails.name}}</span>
+                    <span class="welcome-user icon-users" ></span>
+                  </a>
+
+                  <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="user-menu">
+                    <ul id="profile-links">
+                      <li>
+                        <div class="user-info">
+                          <label *ngIf="ly.userDetails.role?.label">{{ ly.userDetails.role.label}}</label>
+                          <label *ngIf="ly.userDetails.addInfo?.branch">{{ ly.userDetails.addInfo.branch?.label}}</label>
+                          <label
+                            *ngIf="ly.userDetails.phone?.isdCode">{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                          </label>
+                        </div>
+                      </li>
+                      <ng-container *ngIf="ly.siteConfig && ly.siteConfig.profileLinks.length > 0 ">
+                        <li *ngFor="let link of ly.siteConfig.profileLinks">
+                          <ng-container [ngSwitch]="link.type">
+                            <a *ngSwitchDefault [routerLink]="['/'+link.url]" class="dropdown-item"
+                              [target]="link.target">{{link.title}}</a>
+                          </ng-container>
+                        </li>
+                      </ng-container>
+                      <li>
+                        <button class="dropdown-item" id="logout" (click)="ly.logout()">
+                          Logout
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        -->
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!--
+  <header class="row col-12 row">
+    <div class="header-leftside col-4 row">
+      <div class="col">
+        <a class="logo" *ngIf="ly.siteConfig.clientLogo"> <img [src]="ly.siteConfig.clientLogo" alt="Logo" /> </a>
+      </div>
+    </div>
+
+    <div class="header-rightside">
+      <ul>
+        <li>
+          <div ngbDropdown class="user-details" placement="bottom-right">
+            <a class="" id="dropdownBasic1" ngbDropdownToggle>
+              <span class="welcome">Welcome </span>
+              <span class="welcome-user"> {{ ly.userDetails.name}}</span>
+            </a>
+
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="user-menu">
+              <ul>
+                <li>
+                  <div class="user-info">
+                    <label *ngIf="ly.userDetails.role?.label">{{ ly.userDetails.role.label}}</label>
+                    <label *ngIf="ly.userDetails.addInfo?.branch">{{ ly.userDetails.addInfo.branch?.label}}</label>
+                    <label *ngIf="ly.userDetails.phone?.isdCode">{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                    </label>
+                  </div>
+                </li>
+                <ng-container *ngIf="ly.siteConfig && ly.siteConfig.profileLinks.length > 0 ">
+                  <li *ngFor="let link of ly.siteConfig.profileLinks">
+                    <ng-container [ngSwitch]="link.type">
+                      <a *ngSwitchDefault [routerLink]="['/'+link.url]" class="dropdown-item" [target]="link.target">{{link.title}}</a>
+                    </ng-container>
+                  </li>
+                </ng-container>
+                <li>
+                  <button class="dropdown-item" (click)="ly.logout()">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </header>
+-->
+
+<!--
+  <div class="breadcrumb-widget" fxLayout="row" fxLayoutAlign="space-between center">
+
+      <a href="javascript:;" fxHide fxShow.gt-xs class="icon-bars sidebar-toggle" (click)="ly.toggleMenu();" matTooltip="Click to toggle Menu"
+          matTooltipPosition="right"></a>
+      <div fxFlex class="breadcrumb-left" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <i *ngIf="ly.backBtn" class="icon-long-left-arrow back-btn" (click)="ly.backClicked()"></i> <span>{{ly.pageTitle}}</span>
+      </div>
+      <div fxFlex class="breadcrumb-right" style="height: 40px;" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      </div>
+  </div>
+-->
+
+<!--
+  <div class="side-menu" [ngClass]="ly.menuState">
+    <zc-com-render type="menu" [options]="{app: ly.currentApp}"></zc-com-render>
+  </div>
+-->
+
+<div class="main-content" [ngClass]="ly.menuState">
+  <a class="icon-bars afterClose-toggle" (click)="ly.toggleMenu();"></a>
+  <div class="container-fluid">
+    <div class="main-info">
+      <div class="new-side-menu">
+        <div class="sidebar-toggle-header">
+          <div class="sidebar-toggle">
+            <a
+              fxHide
+              fxShow.lt-sm
+              class="icon-bars "
+              (click)="ly.toggleMenu();"
+            ></a>
+          </div>
+          <h3>USER MENU</h3>
+          <a
+            class="lock"
+            [ngClass]="ly.lockValue"
+            [title]="(ly.lockValue === 'icon-unlock')?'unlocked':'locked'"
+            (click)="ly.disableToggle()"
+          ></a>
+        </div>
+        <div class="side-menu" [ngClass]="ly.menuState">
+          <!--
+            <a href="assets/mahait/html/home.html" class="maha-home">Home</a>
+          -->
+          <!--
+            <a class="nav-link maha-home" href="assets/mahait/html/home.html" mattooltipposition="right">
+              <i class="icon-home ng-star-inserted"></i>
+              <span class="nav-link-text">Home</span>
+            </a>
+          -->
+          <zc-com-render
+            type="menu"
+            [options]="{app: ly.currentApp}"
+          ></zc-com-render>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<footer class="clearfix maha-footer">
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <p>© 2019 Film City Mumbai All Rights Reserved.</p>
+          <div class="flex-display">
+            <img src="assets/themes/mahait/images/footer-logo.png" />
+            <div>
+              <p>This site is developed & managed by</p>
+              <p class="text-weight">
+                Maharashtra Information Technology Corporation
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 text-right">
+          <ul>
+            <li class="right-border">Faq's</li>
+
+            <li class="right-border">Privacy Policy</li>
+
+            <li class="right-border">Privacy Policy</li>
+
+            <li>Contact Us</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</footer>

@@ -1,0 +1,24 @@
+@import '../../app/config/theme.scss';
+.mat-menu-panel {
+  position: relative;
+  overflow: visible !important;
+  border-radius: $br5 !important;
+  &:before {
+    content: '';
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #dedede;
+    position: absolute;
+    top: -9px;
+    right: 8px;
+  }
+  &:after {
+    content: '';
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-bottom: 9px solid #fff;
+    position: absolute;
+    top: -8px;
+    right: 8px;
+  }
+}

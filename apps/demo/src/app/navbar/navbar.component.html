@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)"
+  >
+    <mat-toolbar color="primary">ZC Widget V3</mat-toolbar>
+    <mat-nav-list>
+      <nav-list *ngFor="let item of menuItems" [item]="item"></nav-list>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+      >
+        <!-- *ngIf="isHandset$ | async" -->
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div style="float: right;width:100%;text-align: right;">
+        <a mat-button> version {{ version }}</a>
+        <!--
+          <a mat-button routerLink="ui">UI</a>
+          <a mat-button routerLink="examples">Examples</a>
+        -->
+      </div>
+    </mat-toolbar>
+    <div style="padding: 10px" #content><router-outlet></router-outlet></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,23 @@
+.cutom-editor {
+  position: relative;
+  width: 'auto';
+  i {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #000;
+    border-radius: 5px;
+    &.active {
+      color: #1e88e5;
+    }
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+}

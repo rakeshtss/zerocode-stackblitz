@@ -1,0 +1,21 @@
+<div class="list-view-main">
+  <div class="list-view-str">
+    <ul class="clearfix">
+      <li *ngFor='let section of stageList'>
+        <div class="list-str">
+          <h4>
+            {{section.name}}
+          </h4>
+          <a href="/#/qlana/{{moduleType}}/{{moduleType}}-stage-view/{{params.uid}}?page={{subsection.code}}&pageName={{subsection.name}}"
+            *ngFor='let subsection of section.subSection' class="list-data white-bg">
+            <div class="list-img "> <i [ngClass]="subsection.icon"></i> </div>
+            <div class="list-text ">
+              <h5>{{subsection.name}}</h5>
+              <span>----</span>
+            </div>
+          </a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

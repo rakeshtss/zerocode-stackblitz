@@ -1,0 +1,99 @@
+<header fxLayout="row" fxLayoutAlign="space-between center">
+  <div
+    fxFlex="250px"
+    fxLayout="row"
+    fxFlex.xs="100"
+    class="header-leftside"
+    fxLayoutAlign="start center"
+  >
+    <a class="logo"> <img [src]="ly.siteUiConfig.headerLogo" alt="Logo" /> </a>
+  </div>
+  <div fxFlex class="header-rightside">
+    <ul fxLayout="row" fxLayoutAlign="space-between center">
+      <li *ngIf="ly.showProfile">
+        <div ngbDropdown class="user-details" placement="bottom-right">
+          <a class="" id="dropdownBasic1" ngbDropdownToggle>
+            <span class="welcome">Welcome </span>
+            <span class="welcome-user"> {{ ly.userDetails.name}}</span>
+          </a>
+          <div
+            ngbDropdownMenu
+            aria-labelledby="dropdownBasic1"
+            class="user-menu"
+          >
+            <ul>
+              <li>
+                <div class="user-info">
+                  <label *ngIf="ly.userDetails.role?.label"
+                    >{{ ly.userDetails.role.label}}</label
+                  >
+                  <label *ngIf="ly.userDetails.addInfo?.branch"
+                    >{{ ly.userDetails.addInfo.branch?.label}}</label
+                  >
+                  <label *ngIf="ly.userDetails.phone?.isdCode"
+                    >{{ly.userDetails.phone?.isdCode}}-{{ly.userDetails.phone?.value}}
+                  </label>
+                </div>
+              </li>
+              <ng-container
+                *ngIf="ly.siteUiConfig && ly.siteUiConfig.profileLinks.length > 0 "
+              >
+                <li *ngFor="let link of ly.siteUiConfig.profileLinks">
+                  <ng-container [ngSwitch]="link.type">
+                    <a
+                      *ngSwitchCase="external"
+                      [href]="link.url"
+                      class="dropdown-item"
+                      target="link.target"
+                      >{{link.title}}</a
+                    >
+                    <a
+                      *ngSwitchDefault
+                      [routerLink]="[link.url]"
+                      class="dropdown-item"
+                      [target]="link.target"
+                      >{{link.title}}</a
+                    >
+                  </ng-container>
+                </li>
+              </ng-container>
+              <li>
+                <button class="dropdown-item" (click)="ly.logout()">
+                  Logout
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</header>
+<div
+  class="breadcrumb-widget"
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+>
+  <div
+    fxFlex
+    class="breadcrumb-left"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="10px"
+  >
+    <span>{{ly.pageTitle}}</span>
+  </div>
+  <div
+    fxFlex
+    class="breadcrumb-right"
+    style="height: 40px;"
+    fxLayout="row"
+    fxLayoutAlign="end center"
+    fxLayoutGap="20px"
+  ></div>
+</div>
+<div>
+  <div class="main-content" [ngClass]="ly.menuState">
+    <router-outlet></router-outlet>
+  </div>
+</div>
